@@ -1,97 +1,159 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 
 <html lang="es">
     <head>
         <meta charset="UTF-8">
+        <title>{%block title %} iSeller {% endblock %}</title>       
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-select.css' %}">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap-select.js' %}"></script>
         
-        <title>{%block title %} iSeller {% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
+
+<!-- for-mobile-apps -->
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<!--fonts-->
+<link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!--//fonts-->	
+<!-- js -->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<!-- js -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+<script type="text/javascript" src="{% static 'js/jquery.leanModal.min.js' %}"></script>
+<link href="{% static ' css/jquery.uls.css' %}" rel="stylesheet"/>
+<link href="{% static ' css/jquery.uls.grid.css' %}" rel="stylesheet"/>
+<link href="{% static ' css/jquery.uls.lcd.css' %}" rel="stylesheet"/>
+
+
+        
     </head>
     <body>
         {% block header %}
-        <div class="jumbotron header text-center">
-            <h1>iSeller</h1>
-            <form class="form-inline">
-                <div class="input-group">
-                    <input type="text" class="form-control" size="50" placeholder="¿Qué estas buscando?">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        
+	<div class="header">
+		<div class="container">
+			<div class="logo">
+				<a href="index.html"><span>i</span>Seller</a>
+			</div>
+			<div class="header-right">
+			<a class="account" href="login.html">Acceder</a>
+			
+	<!-- Large modal -->
+		</div>
+		</div>
+	</div>
         
         {% endblock %}
         
         {% block navbar %}
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">Categorias</a>
+        <div class="main-banner banner text-center">
+            <div class="container">    
+                <h1>Una nueva Forma de comprar</h1>
+                <p>Tenemos lo que buscas a los mejores precios</p>
             </div>
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Tecnología</a></li>
-              <li><a href="#">Moda</a></li>
-              <li><a href="#">Deportes</a></li>
-              <li><a href="#">Accesorios</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Acceder</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Registrarse</a></li>
-            </ul>
-          </div>
-        </nav>
+        </div>
         {% endblock %}
         
-        {%block content %}
-        <!--###############CONTENEDOR##################-->
-        <div class="container bg-1 text-center">     
-            <h3>Hello Template</h3> 
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
-                    <th>City</th>
-                    <th>Country</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Anna</td>
-                    <td>Pitt</td>
-                    <td>35</td>
-                    <td>New York</td>
-                    <td>USA</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-
+        {%block content %}        
+   <!-- contenido -->
         {% endblock %}
         
         
 
         {% block footer %}
-        <footer class="jumbotron bg-2 text-center">
-            <p>Software Engineering II - Computer Science </p> 
-        </footer>
+        <footer>
+			<div class="footer-top">
+				<div class="container">
+					<div class="foo-grids">
+						<div class="col-md-3 footer-grid">
+							<h4 class="footer-head">Quienes Somos</h4>
+							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+							<p>The point of using Lorem Ipsum is that it has a more-or-less normal letters, as opposed to using 'Content here.</p>
+						</div>
+						<div class="col-md-3 footer-grid">
+							<h4 class="footer-head">Ayuda</h4>
+							<ul>
+								<li><a href="howitworks.html">How it Works</a></li>						
+								<li><a href="sitemap.html">Sitemap</a></li>
+								<li><a href="faq.html">Faq</a></li>
+								<li><a href="feedback.html">Feedback</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="typography.html">Shortcodes</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3 footer-grid">
+							<h4 class="footer-head">Información</h4>
+							<ul>
+								<li><a href="regions.html">Locations Map</a></li>	
+								<li><a href="terms.html">Terms of Use</a></li>
+								<li><a href="popular-search.html">Popular searches</a></li>	
+								<li><a href="privacy.html">Privacy Policy</a></li>	
+							</ul>
+						</div>
+						<div class="col-md-3 footer-grid">
+							<h4 class="footer-head">Contactanos</h4>
+							<span class="hq">Our headquarters</span>
+							<address>
+								<ul class="location">
+									<li><span class="glyphicon glyphicon-map-marker"></span></li>
+									<li>Universidad Nacional de San Agustín</li>
+									<div class="clearfix"></div>
+								</ul>	
+								<ul class="location">
+									<li><span class="glyphicon glyphicon-earphone"></span></li>
+									<li>+0 561 111 235</li>
+									<div class="clearfix"></div>
+								</ul>	
+								<ul class="location">
+									<li><span class="glyphicon glyphicon-envelope"></span></li>
+									<li><a href="mailto:info@example.com">lqmyacs@gmail.com</a></li>
+									<div class="clearfix"></div>
+								</ul>						
+							</address>
+						</div>
+						<div class="clearfix"></div>
+					</div>						
+				</div>	
+			</div>	
+			<div class="footer-bottom text-center">
+			<div class="container">
+				<div class="footer-logo">
+					<a href="index.html"><span>i</span>Seller</a>
+				</div>
+				<div class="copyrights">
+					<p> 2017 iSeller - Software Engineering Project </p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		</footer>
         {% endblock %}
         
     
     
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
