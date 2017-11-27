@@ -12,6 +12,6 @@ class Persona(models.Model):
     fecha_nac = models.DateField()
     id_doc = models.CharField(max_length=10)
     permisos = models.CharField(max_length=15)
-    email = models.CharField(max_length=30)
+    email = models.CharField(max_length=50)
     telf = models.CharField(max_length=15)
-    domicilio = models.TextField(max_length=15)
+    domicilio = models.TextField(max_length=100)

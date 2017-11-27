@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-up">
+						<h1>Crear una Cuenta Nueva</h1>
+						<p class="creating">Having hands on experience in creating innovative designs,I do offer design 
+							solutions which harness.</p>
+						<h2>Personal Information</h2>
+                        <form method="POST" >
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Guardar</button>
+                        </form>
+					</div>
+				</div>
+			</div>
+
+{% endblock %}
+
