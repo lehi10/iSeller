@@ -6,6 +6,7 @@ iSeller - Una Nueva Forma de comprar
 {% endblock %}
 
 {% block content%}
+
 <div class="content">
 			<div class="categories">
 				<div class="container">
@@ -83,48 +84,56 @@ iSeller - Una Nueva Forma de comprar
 				<div class="trend-ads">
 					<h2>Ultimas OFERTAS</h2>
 							<ul id="flexiselDemo3">
-								
                                 <li>
-									<div class="col-md-3 biseller-column">
-										<a href="single.html">
-											<img src="{% static 'images/p1.jpg' %}"/>
-											<span class="price">S/. 450</span>
-										</a> 
-										<div class="ad-info">
-											<h5>There are many variations of passages</h5>
-											<span>1 hour ago</span>
-										</div>
-									</div>
-									<div class="col-md-3 biseller-column">
-										<a href="single.html">
-											<img src="{% static 'images/p2.jpg' %}"/>
-											<span class="price">S/. 399</span>
-										</a> 
-										<div class="ad-info">
-											<h5>Lorem Ipsum is simply dummy</h5>
-											<span>3 hour ago</span>
-										</div>
-									</div>
-									<div class="col-md-3 biseller-column">
-										<a href="single.html">
-											<img src="{% static 'images/p3.jpg' %}"/>
-											<span class="price">S/. 199</span>
-										</a> 
-										<div class="ad-info">
-											<h5>It is a long established fact that a reader</h5>
-											<span>8 hour ago</span>
-										</div>
-									</div>
-									<div class="col-md-3 biseller-column">
-										<a href="single.html">
-											<img src="{% static 'images/p4.jpg' %}"/>
-											<span class="price">S/. 159</span>
-										</a> 
-										<div class="ad-info">
-											<h5>passage of Lorem Ipsum you need to be</h5>
-											<span>19 hour ago</span>
-										</div>
-									</div>
+                                    {% if object_list %}
+                                    
+                                    {% for  item in object_list %}
+                                    
+                                        <div class="col-md-3 biseller-column">
+                                            <a href="single.html">
+                                                <img src="{% static 'images/p1.jpg' %}"/>
+                                                <span class="price">S/. 450</span>
+                                            </a> 
+                                            <div class="ad-info">
+                                                <h5>{{ item.nombre_oferta }}</h5>
+                                                <span>1 hour ago</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 biseller-column">
+                                            <a href="single.html">
+                                                <img src="{% static 'images/p2.jpg' %}"/>
+                                                <span class="price">S/. 399</span>
+                                            </a> 
+                                            <div class="ad-info">
+                                                <h5>Lorem Ipsum is simply dummy</h5>
+                                                <span>3 hour ago</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 biseller-column">
+                                            <a href="single.html">
+                                                <img src="{% static 'images/p3.jpg' %}"/>
+                                                <span class="price">S/. 199</span>
+                                            </a> 
+                                            <div class="ad-info">
+                                                <h5>It is a long established fact that a reader</h5>
+                                                <span>8 hour ago</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 biseller-column">
+                                            <a href="single.html">
+                                                <img src="{% static 'images/p4.jpg' %}"/>
+                                                <span class="price">S/. 159</span>
+                                            </a> 
+                                            <div class="ad-info">
+                                                <h5>passage of Lorem Ipsum you need to be</h5>
+                                                <span>19 hour ago</span>
+                                            </div>
+                                        </div>
+                                    {% endfor %} 
+                                    {% else %}
+                                    No hay nada
+                                    {% endif %}
+                                    
 								</li>
 								
 								
