@@ -6,6 +6,9 @@ from apps.registro.models import Persona
 
 def index(request):
     return render(request, 'cliente/index.html')
+
+
+
 def cliente_list(request):
 	print ("prueba p papi")
 	cliente_ = Persona.objects.all()
