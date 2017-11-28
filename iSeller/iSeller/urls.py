@@ -21,8 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cliente/', include('apps.cliente.urls')),
     url(r'^registro/', include('apps.registro.urls')),
-    
-    
     url(r'^',include('apps.dashboard.urls')),
-    
 ]

@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
-from apps.cliente.views import index,cliente_list
+from apps.cliente.views import index, perfilCliente
 
 urlpatterns =[ 
     url(r'^$',index, name='index'),
-    url(r'^listar$',cliente_list,name='cliente_listar'),
+    url(r'^perfil$',perfilCliente,name='perfil'),
 ]

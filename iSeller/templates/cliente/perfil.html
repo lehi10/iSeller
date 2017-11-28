@@ -1,0 +1,82 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+{% block title %}
+iSeller - Perfil
+{% endblock %}
+
+
+{% block content %}
+
+<div class="single-page main-grid-border">
+		<div class="container">
+			<div class="product-desc">
+				<div class="col-md-7 product-view">
+					<h2>Perfil de Usuario {{ mi_cliente.id_user }}</h2>
+					
+
+					<!-- FlexSlider -->
+					  <script defer src="js/jquery.flexslider.js"></script>
+					<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+						<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function() {
+					  $('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+					  });
+					});
+					</script>
+					<!-- //FlexSlider -->
+                    {% for a_cliente in mi_cliente %}
+                        <div class="product-details">
+                            <h4>Nombre : <a href="#">{{ a_cliente.nombres }}</a></h4>
+                            <h4>Apellidos : {{ a_cliente.apellidos }}</h4>
+                            <h4>Fecha de Nacimiento : {{ a_cliente.fecha_nac}}</h4>
+                            <h4>Correo : {{ a_cliente.email }}</h4>
+                            <h4>Telefono {{ a_cliente.telf }}</h4>
+                            <h4>Domicilio : {{ a_cliente.domicilio }}</h4>					
+                        </div>
+                    {% endfor %}
+				</div>
+				<div class="col-md-5 product-details-grid">
+                    <center><h3>Carrito de compras  </h3></center>
+                    <hr>
+					<div class="item-price">
+						<div class="product-price">
+							<p class="p-price">Precio</p>
+							<h3 >S/. 259</h3>
+							<div class="clearfix"></div>
+						</div>
+						<div class="condition">
+							<p class="p-price">Cantidad de items</p>
+							<h4>4</h4>
+							<div class="clearfix"></div>
+						</div>
+						<div class="itemtype">
+							<p class="p-price">Ultima Fecha</p>
+							<h4>10-Nov-2017</h4>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+                    <button>Realizar Pago</button>
+                    <div class="tips">
+                    <h4>Mis ultimos intermediarios</h4>
+                        <ol>
+                            <li><a href="#">...</a></li>
+                            <li><a href="#">...</a></li>
+                        </ol>
+                    </div>
+                    <div class="interested text-center">
+						<h4>Tiene problemas?<small> Soporte!</small></h4>
+						<p><i class="glyphicon glyphicon-earphone"></i>00-85-9875462655</p>
+					</div>
+				</div>
+			<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock%}

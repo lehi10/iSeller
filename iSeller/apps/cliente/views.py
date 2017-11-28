@@ -9,9 +9,9 @@ def index(request):
 
 
 
-def cliente_list(request):
-	print ("prueba p papi")
-	cliente_ = Persona.objects.all()
-	contexto= {'mi_cliente':cliente_}
-	print(contexto)
-	return render(request,'cliente/cliente_list.html',contexto)
+def perfilCliente(request):
+    print("asdasdasd")
+    user_id_session = '123'##request.session.get('id_user')
+    cliente = Persona.objects.all()    
+    contexto= {'mi_cliente':cliente , 'id_user':user_id_session }
+    return render(request,'cliente/perfil.html',contexto) 
