@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>Nombre</td>
+			<td>Apellidos</td>
+			<td>Sexo</td>
+			<td>Fecha de Nacimiento</td>
+			<td>Email</td>
+			<td>Telefono</td>
+			<td>Domicilio</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if mi_cliente %}
+		{% for a_cliente in mi_cliente %}
+		 {% if a_cliente.idPersona == 1%} 
+		<tr>
+			<td>{{ a_cliente.nombres }}</td>
+			<td>{{ a_cliente.apellidos }}</td>
+			<td>{{ a_cliente.sexo }}</td>
+			<td>{{ a_cliente.fecha_nac}}</td>
+			<td>{{ a_cliente.email }}</td>
+			<td>{{ a_cliente.telf }}</td>
+			<td>{{ a_cliente.domicilio }}</td>
+		</tr>
+		{% else %}
+		{% endif %}
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de Usuario</h1>
+		{% endif %}
+	</tbody>
+</table> 
+<ul class="pager">
+	<li>
+		{% if page_obj.has_previous %}
+       	 <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+		{% endif %}
+        </li>
+	<li>
+		{% if page_obj.has_next %}
+     	 <a href="?page={{ page_obj.next_page_number }}">Next</a> 
+    	{% endif %}
+    </li>
+</ul>
+{% endblock%}
