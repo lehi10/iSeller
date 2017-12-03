@@ -32,13 +32,18 @@ def login_view(request):
             user = Persona.objects.filter(usuario=name_us,password=password_us)
             if user.exists():    
                 request.session['id_user'] = user.values()[0]['idPersona']
-                return perfilCliente(request)
-            else:
-                return render(request,'registro/login.html') 
+                request.session['nombres'] = user.values()[0]['nombres']
+                request.session['apellidos'] = user.values()[0]['apellidos']
+                request.session['isLogin']=True
+                return redirect('/cliente/perfil') 
     else:
         form_login = LoginForm()
-        print("fallo")
-    return render(request,'registro/login.html',{'form_login':form_login})
+        return render(request,'registro/login.html',{'form_login':form_login})
     
-
-
+def logout_view(request):
+    if request.session['isLogin'] == True:
+        del request.session['id_user']
+        del request.session['nombres']
+        del request.session['apellidos']
+        request.session['isLogin']=False
+    return redirect('/')
