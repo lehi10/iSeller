@@ -11,15 +11,22 @@ from apps.cliente.views import index, perfilCliente
 
 
 def registro_view(request):
-	if request.method == 'POST':
-		#PersonaForm es mi clase creada en archivo forms.py
-		form = RegistroForm(request.POST) 
-		if form.is_valid():
-			form.save()
-		return redirect('/')
-	else:
-		form = RegistroForm()
-	return render(request,'registro/index.html', {'form':form } )
+    if request.method == 'POST':
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            datos = form.cleaned_data
+            name_us = datos.get('usuario')
+            user = Persona.objects.filter(usuario=name_us)
+            request.session['id_user'] = user.values()[0]['idPersona']
+            request.session['nombres'] = user.values()[0]['nombres']
+            request.session['apellidos'] = user.values()[0]['apellidos']
+            request.session['isLogin']=True
+            form.save()
+        return redirect('/')
+    else:
+        form = RegistroForm()
+    return render(request,'registro/index.html', {'form':form } )
 
 
 def login_view(request):
