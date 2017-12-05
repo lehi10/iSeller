@@ -48,7 +48,7 @@ def login_view(request):
                 request.session['nombres'] = user.values()[0]['nombres']
                 request.session['apellidos'] = user.values()[0]['apellidos']
                 request.session['isLogin']=True
-                
+            return redirect('/')
     else:
         form_login = LoginForm()
         return render(request,'registro/login.html',{'form_login':form_login})
