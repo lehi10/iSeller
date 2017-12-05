@@ -36,6 +36,7 @@ def login_corre_or_username(nameus, clave):
         user = Persona.objects.filter(email=nameus,password=clave)
         return user
 
+
 def login_view(request):
     if request.method == 'POST':
         form_login=LoginForm(request.POST or None)
@@ -48,7 +49,12 @@ def login_view(request):
                 request.session['nombres'] = user.values()[0]['nombres']
                 request.session['apellidos'] = user.values()[0]['apellidos']
                 request.session['isLogin']=True
+<<<<<<< Updated upstream
             return redirect('/')
+=======
+            return redirect('/cliente/perfil')
+    
+>>>>>>> Stashed changes
     else:
         form_login = LoginForm()
         return render(request,'registro/login.html',{'form_login':form_login})
