@@ -49,12 +49,8 @@ def login_view(request):
                 request.session['nombres'] = user.values()[0]['nombres']
                 request.session['apellidos'] = user.values()[0]['apellidos']
                 request.session['isLogin']=True
-<<<<<<< Updated upstream
-            return redirect('/')
-=======
             return redirect('/cliente/perfil')
     
->>>>>>> Stashed changes
     else:
         form_login = LoginForm()
         return render(request,'registro/login.html',{'form_login':form_login})
