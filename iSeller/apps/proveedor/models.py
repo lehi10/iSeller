@@ -28,4 +28,7 @@ class Producto(models.Model):
     precioBasico = models.IntegerField(default=0)
     descripcion = models.CharField(default="",max_length=500)
     urlImagen = models.URLField(default="",max_length=1000)
+class Categoria(models.Model):
+    idCategoria = models.AutoField(primary_key=True)
+    nombre=models.CharField(blank=True,max_length=100)
 
