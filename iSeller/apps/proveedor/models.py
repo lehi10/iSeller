@@ -14,14 +14,18 @@ class Proveedor(models.Model):
     usuario = models.CharField(blank=False,max_length=50)
     password = models.CharField(max_length=100)    
     calificacion = models.IntegerField(default=0)
-    
+
 class Producto(models.Model):
     idProducto =models.AutoField(primary_key=True)
     idProveedor = models.ForeignKey(Proveedor,null=False,blank=False)
     nombre = models.CharField(blank=True,max_length=100)
     medidas = models.CharField(blank=True,max_length=50)
-    marca = models.CharField(max_length=50)
+    marca = models.CharField(default="",max_length=50)
     stock = models.IntegerField(default=0)
     calificacion = models.IntegerField(default=0)
-    tags = models.CharField(max_length=50)
-    info =models.CharField(max_length=500)
+    tags = models.CharField(default="",max_length=50)
+    info =models.CharField(default="",max_length=500)
+    precioBasico = models.IntegerField(default=0)
+    descripcion = models.CharField(default="",max_length=500)
+    urlImagen = models.URLField(default="",max_length=1000)
+
