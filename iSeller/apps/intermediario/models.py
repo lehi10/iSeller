@@ -1,5 +1,5 @@
 from django.db import models
-
+from apps.registro.models import Persona
 
 class Intermediario(models.Model):
     idIntermediario = models.AutoField(primary_key=True, null=False,blank=False)
