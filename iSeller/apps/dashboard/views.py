@@ -22,9 +22,8 @@ def contenido_view(request):
 		print("--->",x.nombre)
 	return render(request,'index.html',contexto)
 
-"""
-class ofertalist(ListView):
-	print("ie")
-	queryset = Oferta.objects.select_related()
-	template_name = 'index.html'
-"""
+def detallesItem(request):
+	id= request.GET['id']
+	item =Producto.objects.filter(idProducto=id).all()
+	item_set={'detalles' : item}
+	return render(request,'tienda/item.html',item_set)
