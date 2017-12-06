@@ -24,7 +24,17 @@ def contenido_view(request):
 
 """
 class ofertalist(ListView):
+<<<<<<< HEAD
+    model = ofertaModel
+    queryset = Oferta.objects.select_related()
+    template_name = 'index.html'
+
+class productolist(ListView):
+    model = Producto
+    template_name = 'index.html'
+=======
 	print("ie")
 	queryset = Oferta.objects.select_related()
 	template_name = 'index.html'
 """
+>>>>>>> BackEnd
