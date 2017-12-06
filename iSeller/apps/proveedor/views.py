@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-
+from django.views.generic import ListView
+from apps.proveedor.models import Producto
 
 from django.http import HttpResponse
 
@@ -10,4 +11,5 @@ from django.http import HttpResponse
 def index(request):
 	print("hii")
 	return render(request, 'proveedor/index.html')
+
 
