@@ -12,14 +12,19 @@ def index(request):
 
 def tienda(request):
     return render(request,'tienda/index.html')
-def traer_categoria(request):
+
+def contenido_view(request):
 	print("gerererer")
 	categorias=Categoria.objects.all()
-	contexto={'mis_categorias': categorias}
+	ofertas = Oferta.objects.select_related()
+	contexto={'mis_categorias': categorias, 'ofert_list' : ofertas}
 	for x in categorias:
 		print("--->",x.nombre)
 	return render(request,'index.html',contexto)
+
+"""
 class ofertalist(ListView):
 	print("ie")
 	queryset = Oferta.objects.select_related()
 	template_name = 'index.html'
+"""
