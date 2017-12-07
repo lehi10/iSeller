@@ -70,7 +70,7 @@
 
 							{% if request.session.isLogin  %}
 								<div class="login">
-									<a href="/cliente/perfil" ><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">{{ request.session.apellidos }},{{ request.session.nombres }}</span></a>
+									<a href="/{{ request.session.permisos }}/perfil" ><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">{{ request.session.apellidos }},{{ request.session.nombres }}</span></a>
 									<a href="/registro/logout" onclick=" " ><i class="fa fa-sign-out"></i> <span class="hidden-xs text-uppercase">Cerrar Sesión</span></a>
 								</div>
 							{% else %}
