@@ -1,0 +1,134 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+{% block title %}
+iSeller - Perfil
+{% endblock %}
+
+
+{% block content %}
+
+
+<div id="heading-breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<h1>My account</h1>
+				</div>
+				<div class="col-md-5">
+					<ul class="breadcrumb">
+
+						<li><a href="index.html">Home</a>
+						</li>
+						<li>My account</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="content" class="clearfix">
+
+		<div class="container">
+
+			<div class="row">
+
+				<!-- *** LEFT COLUMN ***
+		 _________________________________________________________ -->
+
+				<div class="col-md-9 clearfix" id="customer-account">
+
+					<p class="lead">Mi perfil</p>					
+					<!-- /.box -->
+					<div class="box clearfix">
+						<div class="heading">
+							<h3 class="text-uppercase">Perfil de {{ mi_cliente.id_user }}</h3>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="firstname">Nombres</label>
+								<h4>{{  mi_cliente.0.nombres }}</h4>
+							</div>
+							<div class="col-sm-6">
+									<label for="lastname">Apellidos</label>
+									<h4>{{  mi_cliente.0.apellidos }}</h4>
+							</div>
+						</div>
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-sm-6">
+									<label for="company">Company</label>
+									<h4>{{ mi_cliente.0.fecha_nac}}</h4>
+									
+							</div>
+							<div class="col-sm-6">
+									<label for="street">Street</label>
+									<h4>{{ mi_cliente.0.email }}</h4>
+							</div>
+						</div>
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-sm-6">
+									<label for="phone">Telephone</label>
+
+									<h4>{{ mi_cliente.0.telf }}</h4>
+							</div>
+							<div class="col-sm-6">
+									<label for="email_account">Email</label>
+									<h4>{{ mi_cliente.0.domicilio }}</h4>									
+							</div>
+						</div>				
+					</div>
+				</div>
+				<!-- /.col-md-9 -->
+
+				<!-- *** LEFT COLUMN END *** -->
+
+				<!-- *** RIGHT COLUMN ***
+		 _________________________________________________________ -->
+
+				<div class="col-md-3">
+					<!-- *** CUSTOMER MENU ***
+_________________________________________________________ -->
+					<div class="panel panel-default sidebar-menu">
+						<div class="panel-heading">
+							<h3 class="panel-title">Customer section</h3>
+						</div>
+
+						<div class="panel-body">
+
+							<ul class="nav nav-pills nav-stacked">
+								<li class="active">
+									<a href="customer-orders.html"><i class="fa fa-list"></i> My orders</a>
+								</li>
+								<li>
+									<a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
+								</li>
+								<li>
+									<a href="customer-account.html"><i class="fa fa-user"></i> My account</a>
+								</li>
+								<li>
+									<a href="/registro/logout"><i class="fa fa-sign-out"></i> Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- *** CUSTOMER MENU END *** -->
+				</div>
+				<!-- *** RIGHT COLUMN END *** -->
+			</div>
+			<!-- /.row -->
+
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#content -->
+
+
+
+
+
+
+{% endblock%}
+
+
