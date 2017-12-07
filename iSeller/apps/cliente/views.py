@@ -13,10 +13,9 @@ def index(request):
 
 def perfilCliente(request):
     if request.session.get('isLogin') ==True :
-        print(request.session.get('nombres'))
-        user_id_session =request.session.get('id_user')
-        cliente = Persona.objects.filter(idPersona=user_id_session)
-        contexto= {'mi_cliente':cliente , 'id_user':user_id_session }
-        return render(request,'cliente/perfil.html',contexto) 
-    else:
-        return redirect('/')
+        if request.session.get('permisos')=='cliente':    
+            user_id_session =request.session.get('id_user')
+            cliente = Persona.objects.filter(idPersona=user_id_session)
+            contexto= {'mi_cliente':cliente , 'id_user':user_id_session }
+            return render(request,'cliente/perfil.html',contexto) 
+    return redirect('/')

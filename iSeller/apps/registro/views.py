@@ -8,26 +8,33 @@ from apps.registro.models import Persona
 from apps.cliente.views import index, perfilCliente
 
 
+"""
+    Función para iniciar sesión
+"""
+def iniciarSesion( request, user):
+    request.session['id_user'] = user.values()[0]['idPersona']
+    request.session['nombres'] = user.values()[0]['nombres']
+    request.session['apellidos'] = user.values()[0]['apellidos']
+    request.session['permisos'] = user.values()[0]['permisos']
+    request.session['isLogin']=True
+    
+def permisosUsuario(request):
+    return request.session['permisos']
 
 
-def registro_view(request):
-    if request.method == 'POST':
-        form = RegistroForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            name_us= form.cleaned_data.get("usuario")
-            user = Persona.objects.filter(usuario=name_us)
-            request.session['id_user'] = user.values()[0]['idPersona']
-            request.session['nombres'] = user.values()[0]['nombres']
-            request.session['apellidos'] = user.values()[0]['apellidos']
-            request.session['isLogin']=True
-            form.save()
-            return redirect('/')
-    else:
-        form = RegistroForm()
-    return render(request,'registro/index.html', {'form':form } )
+"""
+    Funcion para cerrar Sesión
+"""
+def cerrarSesion(request ):
+    del request.session['id_user']
+    del request.session['nombres']
+    del request.session['apellidos']
+    del request.session['permisos']
+    request.session['isLogin']=False
 
-#permite el logeo por nombre de usuario o correo
+""""
+    Permite el logeo por nombre de usuario o correo
+"""
 def login_corre_or_username(nameus, clave):
     user = Persona.objects.filter(usuario=nameus,password=clave)
     if user.exists():  
@@ -37,6 +44,29 @@ def login_corre_or_username(nameus, clave):
         return user
 
 
+"""
+    Vista de Registro
+"""
+def registro_view(request):
+    
+    error = request.GET.get('err',False)
+    if request.method == 'POST':
+        form = RegistroForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            name_us= form.cleaned_data.get("usuario")
+            user = Persona.objects.filter(usuario=name_us)
+            iniciarSesion(request,user)                     ## INICIAR SESSIÓN
+            form.save()
+            return redirect('/')
+    else:
+        form = RegistroForm()
+    return render(request,'registro/index.html', {'form':form , 'error' : error} )
+
+
+"""
+    Función login, que recibe por POST los parametros de usuario y contraseña
+"""
 def login_view(request):
     if request.method == 'POST':
         form_login=LoginForm(request.POST or None)
@@ -44,21 +74,19 @@ def login_view(request):
             name_us = form_login.cleaned_data.get("username")
             password_us = form_login.cleaned_data.get("password")
             user = login_corre_or_username(name_us,password_us)
+            permisos = 'cliente'
             if user.exists():    
-                request.session['id_user'] = user.values()[0]['idPersona']
-                request.session['nombres'] = user.values()[0]['nombres']
-                request.session['apellidos'] = user.values()[0]['apellidos']
-                request.session['isLogin']=True
-            return redirect('/cliente/perfil')
+                iniciarSesion(request,user)                  ## INICIAR SESION
+                permisos = permisosUsuario(request)
+            return redirect('/'+permisos+'/perfil')        
+    form_login = LoginForm()
+    return redirect('/registro?err=log')
     
-    else:
-        form_login = LoginForm()
-        return render(request,'registro/login.html',{'form_login':form_login})
-    
+
+"""
+    Vista cerrar sesión 
+"""
 def logout_view(request):
     if request.session['isLogin'] == True:
-        del request.session['id_user']
-        del request.session['nombres']
-        del request.session['apellidos']
-        request.session['isLogin']=False
+        cerrarSesion(request)                                ## CERRAR SESION
     return redirect('/')
