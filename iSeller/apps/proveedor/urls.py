@@ -1,6 +1,5 @@
 from django.conf.urls import url, include
-from apps.proveedor.views import index
-from apps.proveedor.views import perfilProveedor
+from apps.proveedor.views import index, perfilProveedor
 
 urlpatterns =[ 
     url(r'^$',index, name='index'),

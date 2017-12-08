@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-
+from apps.tienda.views import error404
 
 from django.http import HttpResponse
 from apps.registro.models import Persona
@@ -11,11 +11,20 @@ def index(request):
 
 
 
+
+
 def perfilCliente(request):
-    if request.session.get('isLogin') ==True :
-        if request.session.get('permisos')=='cliente':    
-            user_id_session =request.session.get('id_user')
-            cliente = Persona.objects.filter(idPersona=user_id_session)
-            contexto= {'mi_cliente':cliente , 'id_user':user_id_session }
-            return render(request,'cliente/perfil.html',contexto) 
-    return redirect('/')
+    ## VALIDACION PARA SABER SI EL USUARIO HA SIDO LOGEADO Y SI TIENE PERMISOS PARA ACCEDER
+	if request.session.get('isLogin') != True or request.session.get('permisos') != 'cliente':
+		return error404(request);
+	idUsuario = request.session.get('id_user')
+	usuario = Persona.objects.filter(idPersona=idUsuario)
+	contexto= {'mi_usuario':usuario , 'id_user':idUsuario}
+	return render(request,'cliente/perfil.html',contexto)     
+
+
+
+def carritoCliente(request):
+    return render(request, 'cliente/carrito.html')
+
+    

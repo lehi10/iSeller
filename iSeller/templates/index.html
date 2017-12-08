@@ -12,15 +12,12 @@ iSeller - Una Nueva Forma de comprar
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
-					<h1>iSeller</h1>
+					<h2>Una nueva manera de comprar</h>
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb">
-						<li><a href="/">Home</a>
-						</li>
-						<li>Category with left sidebar</li>
+						<li>Inicio/</a>						
 					</ul>
-
 				</div>
 			</div>
 		</div>
@@ -51,45 +48,9 @@ _________________________________________________________ -->
 								{%for categoria in mis_categorias %}
 								<li>
 									<a href="/categoria?cat={{categoria.nombre}}">{{categoria.nombre}}<span class="badge pull-right"></span></a>
-									<!--
-									<ul>
-										<li><a href="shop-category.html">T-shirts</a>
-										</li>
-										<li><a href="shop-category.html">Shirts</a>
-										</li>
-										<li><a href="shop-category.html">Pants</a>
-										</li>
-										<li><a href="shop-category.html">Accessories</a>
-										</li>
-									</ul>
-									-->
 								</li>
 								{%endfor%}
 								{%endif%}
-								<!--
-								<li class="active">
-									<a href="shop-category.html">Ladies  <span class="badge pull-right">123</span></a>
-									<ul>
-										<li><a href="shop-category.html">T-shirts</a>
-										</li>
-										<li><a href="shop-category.html">Skirts</a>
-										</li>
-										<li><a href="shop-category.html">Pants</a>
-										</li>
-										<li><a href="shop-category.html">Accessories</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="shop-category.html">Kids  <span class="badge pull-right">11</span></a>
-									<ul>
-										<li><a href="shop-category.html">T-shirts</a></li>
-										<li><a href="shop-category.html">Skirts</a></li>
-										<li><a href="shop-category.html">Pants</a></li>
-										<li><a href="shop-category.html">Accessories</a></li>
-									</ul>
-								</li>
-								-->
 							</ul>
 						</div>
 					</div>
@@ -97,7 +58,7 @@ _________________________________________________________ -->
 					<div class="panel panel-default sidebar-menu">
 
 						<div class="panel-heading">
-							<h3 class="panel-title">Brands</h3>
+							<h3 class="panel-title">Marcas</h3>
 							<a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
 						</div>
 
@@ -126,18 +87,15 @@ _________________________________________________________ -->
 										</label>
 									</div>
 								</div>
-
 								<button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-
 							</form>
-
 						</div>
 					</div>
-
+					<!--
 					<div class="panel panel-default sidebar-menu">
 
 						<div class="panel-heading">
-							<h3 class="panel-title clearfix">Colours</h3>
+							<h3 class="panel-title clearfix">Colores</h3>
 							<a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
 						</div>
 
@@ -178,7 +136,7 @@ _________________________________________________________ -->
 
 						</div>
 					</div>
-
+					-->
 					<!-- *** MENUS AND FILTERS END *** -->
 
 					<div class="banner">
@@ -186,6 +144,7 @@ _________________________________________________________ -->
 							<img src="{% static 'img/banner.jpg' %}" alt="sales 2014" class="img-responsive">
 						</a>
 					</div>
+
 					<!-- /.banner -->
 
 				</div>
@@ -193,12 +152,15 @@ _________________________________________________________ -->
 
 				<!-- *** LEFT COLUMN END *** -->
 
-				<!-- *** RIGHT COLUMN ***
-		_________________________________________________________ -->
+				<!-- *** RIGHT COLUMN ***-->
 
 				<div class="col-sm-9">
-
-					<p class="text-muted lead">In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.</p>
+					<div class="banner">
+						<a href="shop-category.html">
+							<img src="{% static 'img/banner4.jpg' %}" alt="sales 2014" class="img-responsive">
+						</a>
+					</div>
+					<p class="text-muted lead">Ultimas promociones :</p>
 
 					<div class="row products">
 
@@ -241,7 +203,7 @@ _________________________________________________________ -->
 								</div>
 							{% endfor %} 
 							{% else %}
-							No hay nada
+							Error, no se encontraron productos
 							{% endif %}
 					
 						<!-- /.col-md-4 -->
@@ -252,7 +214,7 @@ _________________________________________________________ -->
 
 						<div class="col-md-12 banner">
 							<a href="#">
-								<img src="{% static 'img/banner2.jpg' %}" alt="" class="img-responsive">
+								<img src="{% static 'img/banner3.jpg' %}" alt="" class="img-responsive">
 							</a>
 						</div>
 
@@ -296,20 +258,6 @@ _________________________________________________________ -->
 	</div>
 	<!-- /#content -->
 
-
-	<!-- *** GET IT ***
-_________________________________________________________ -->
-
-	<div id="get-it">
-		<div class="container">
-			<div class="col-md-8 col-sm-12">
-				<h3>Do you want cool website like this one?</h3>
-			</div>
-			<div class="col-md-4 col-sm-12">
-				<a href="#" class="btn btn-template-transparent-primary">Buy this template now</a>
-			</div>
-		</div>
-	</div>
 
 {%endblock%}
 
