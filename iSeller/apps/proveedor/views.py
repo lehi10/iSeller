@@ -3,8 +3,9 @@ from django.shortcuts import redirect
 from django.views.generic import ListView
 from apps.proveedor.models import Producto
 from apps.registro.models import Persona
+from apps.proveedor.forms import ProductoRegistro
 
-
+from django.views.generic.edit import FormView
 from django.http import HttpResponse
 
 
@@ -24,3 +25,7 @@ def perfilProveedor(request):
         	contexto= {'mi_cliente':cliente , 'id_user':user_id_session }
         	return render(request,'proveedor/perfil.html',contexto) 
     return redirect('/')
+
+class IngresarProducto(FormView):
+	form_class = ProductoRegistro
+	succes_url = 'index/'
