@@ -31,7 +31,7 @@
                                 </button>
                                 Su contraseña o su usuario son incorrectos.
                             </div>
-                    <div class="col-md-6">
+                    
                     {% endif %}
 
                     <div class="row">
@@ -45,7 +45,15 @@
                                     <hr>
                                     <form  method="POST" action=" ">
                                             {% csrf_token %}
+                                            <h3>Datos de Usuario</h3>
+                                            {{ form_usuario.as_p }}                                            
+                                            
+                                            <hr>
+                                            <h3>Datos Personales</h3>
+                                            
                                             {{ form.as_p }}
+                                            
+                                            
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-template-main"><i class="fa fa-user-md"></i> Registrarse</button>
                                         </div>
@@ -75,6 +83,11 @@
                                             </div>
                                         </form>
                                     </div>
+                                <div class="text-center">
+                                    <a href="/registro/Proveedor">
+                                        <button class="btn btn-template-main"><i class="fa fa-usd"></i> Registrarse como Proveedor</button>
+                                    </a>
+                                </div>
                         </div>
     
                     </div>

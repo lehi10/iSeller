@@ -13,10 +13,10 @@ def index(request):
 
 def perfilIntermediario(request):
     ## VALIDACION PARA SABER SI EL USUARIO HA SIDO LOGEADO Y SI TIENE PERMISOS PARA ACCEDER
-	if request.session.get('isLogin') != True or request.session.get('permisos') != 'intermediario':
+	if request.session.get('isLogin') != True and request.session.get('permisos') != 'intermediario':
 		return error404(request);
 	idUsuario = request.session.get('id_user')
-	usuario = Persona.objects.filter(idPersona=idUsuario)
+	usuario = Persona.objects.filter(idUsuario=idUsuario)
 	contexto= {'mi_usuario':usuario , 'id_user':idUsuario}
 	return render(request,'intermediario/perfil.html',contexto)     
 
