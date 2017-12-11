@@ -93,9 +93,6 @@ def registro_viewProveedor(request):
     else:
         form_proveedor = RegistroProveedorForm()
         form_usuario =RegistroUsuarioProveedorForm()    
-
-        
-
     return render(request,'registro/regProveedor.html', {'form_proveedor':form_proveedor , 'form_usuario' : form_usuario,'error' : error} )
     
 """

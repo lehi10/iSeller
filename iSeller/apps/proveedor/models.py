@@ -1,6 +1,7 @@
 from django.db import models
 from apps.registro.models import UsuariosTabla
 
+
 class Proveedor(models.Model):
     idProveedor = models.AutoField(primary_key=True, null=False,blank=False)
     idUsuario = models.OneToOneField(UsuariosTabla,null=False,blank=False, on_delete=models.CASCADE)
@@ -22,10 +23,10 @@ class Producto(models.Model):
     stock = models.IntegerField(default=0)
     calificacion = models.IntegerField(default=0)
     tags = models.CharField(default="",max_length=50)
-    info =models.CharField(default="",max_length=500)
+    info =models.TextField(default="",max_length=500)
     precioBasico = models.IntegerField(default=0)
-    descripcion = models.CharField(default="",max_length=500)
-    urlImagen = models.URLField(default="",max_length=1000)
+    descripcion = models.TextField(default="",max_length=500)
+    urlImagen = models.ImageField(upload_to='productosImg')
 
 class Categoria(models.Model):
     idCategoria = models.AutoField(primary_key=True)

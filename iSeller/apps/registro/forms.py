@@ -18,12 +18,12 @@ class RegistroUsuarioForm(forms.ModelForm):
 		labels = {
 			'usuario' : 'Usuario',
 			'password': 'Password',
-			'permisos': 'Permisos',
+			'permisos': '¿Como desea usar su cuenta ?',
 			'email': 'Email',
 		}
 		permisosList = (
-        ('cliente', 'Compras'),
-        ('intermediario', 'Intermediario'),
+        ('cliente', 'Quiero hacer compras'),
+        ('intermediario', 'Quiero ofrecer productos de terceros (Intermediario)'),
     	)
 		widgets = {
 			'usuario':forms.TextInput(attrs={'class':'form-control'}),

@@ -37,16 +37,11 @@
     _________________________________________________________ -->
 
             <div class="col-md-9">
-
-                <p class="lead">{{ detalles.0.info }}
-                </p>
-                <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Scroll to product details, material & care and sizing</a>
-                </p>
-
+                
                 <div class="row" id="productMain">
                     <div class="col-sm-6">
                         <div id="mainImage">
-                            <img src="{% static 'img/detailbig1.jpg' %}" alt="" class="img-responsive">
+                            <img src="/media/{{ detalles.0.urlImagen }}" alt="" class="img-responsive">
                         </div>
 
                         <div class="ribbon sale">
@@ -60,58 +55,41 @@
                             <div class="ribbon-background"></div>
                         </div>
                         <!-- /.ribbon -->
-
+                        <div class='box'>
+                            <div class="row" id="thumbs">
+                                    <div class="col-xs-4">
+                                        <a href="/media/{{ detalles.0.urlImagen }}" class="thumb">
+                                            <img src="/media/{{ detalles.0.urlImagen }}" alt="" class="img-responsive">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="/media/{{ detalles.0.urlImagen }}" class="thumb">
+                                            <img src="/media/{{ detalles.0.urlImagen }}" alt="" class="img-responsive">
+                                        </a>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="box">
 
                             <form>
-                                <div class="sizes">
-
-                                    <h3>Available sizes</h3>
-
-                                    <label for="size_s">
-                                        <a href="#">S</a>
-                                        <input type="radio" id="size_s" name="size" value="s" class="size-input">
-                                    </label>
-                                    <label for="size_m">
-                                        <a href="#">M</a>
-                                        <input type="radio" id="size_m" name="size" value="m" class="size-input">
-                                    </label>
-                                    <label for="size_l">
-                                        <a href="#">L</a>
-                                        <input type="radio" id="size_l" name="size" value="l" class="size-input">
-                                    </label>
-
+                                <div class="text-center">
+                                    <h3>{{detalles.0.nombre}}</h3>
+                                    <h4>{{detalles.0.marca}}</h4>
                                 </div>
 
                                 <p class="price">S/. {{ detalles.0.precioBasico }}</p>
-
+                                <blockquote>    
+                                    <h4>Stock: {{detalles.0.stock}} Unidades</h4>
+                                    <p> {{ detalles.0.info }}</p>
+                                </blockquote>
                                 <p class="text-center">
-                                    <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                                    <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>
+                                    <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Agregar al Carrito</button>
+                                    <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Enviar a la lista de Deseos"><i class="fa fa-heart-o"></i>
                                     </button>
                                 </p>
-
                             </form>
-                        </div>
-
-                        <div class="row" id="thumbs">
-                            <div class="col-xs-4">
-                                <a href="{% static 'img/detailbig1.jpg' %}" class="thumb">
-                                    <img src="{% static 'img/detailsquare.jpg' %}" alt="" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="col-xs-4">
-                                <a href="{% static 'img/detailbig2.jpg' %}" class="thumb">
-                                    <img src="{% static 'img/detailsquare2.jpg' %}" alt="" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="col-xs-4">
-                                <a href="{% static 'img/detailbig3.jpg' %}" class="thumb">
-                                    <img src="{% static 'img/detailsquare3.jpg' %}" alt="" class="img-responsive">
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -120,23 +98,14 @@
 
                 <div class="box" id="details">
                     <p>
-                        <h4>Product details</h4>
-                        <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
-                        <h4>Material & care</h4>
-                        <ul>
-                            <li>Polyester</li>
-                            <li>Machine wash</li>
-                        </ul>
-                        <h4>Size & Fit</h4>
-                        <ul>
-                            <li>Regular fit</li>
-                            <li>The model (height 5'8" and chest 33") is wearing a size S</li>
-                        </ul>
-
+                        <h4>Información Adicional</h4>
                         <blockquote>
-                            <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
+                            <p><em>{{detalles.0.info}}</em>
                             </p>
                         </blockquote>
+                        <p>{{detalles.0.descripcion}}</p>
+                        <h4>Medidas</h4>
+                        <p>{{detalles.0.medidas}}</p>
                 </div>
 
                 <div class="box social" id="product-social">

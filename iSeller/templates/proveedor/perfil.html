@@ -49,26 +49,16 @@ Perfil Proveedor: {{  mi_usuario.0.nombres }}
 						<div class="row">
 							<div class="col-sm-6">
 									<label for="company">Razón Social</label>
-									<h4>Empresa prueba 1</h4>
+									<h4>{{mi_usuario.0.razonSocial}}</h4>
 									
 							</div>
 							<div class="col-sm-6">
 									<label for="street">RUC</label>
-									<h4>123456789</h4>
+									<h4>{{mi_usuario.0.ruc}}</h4>
 							</div>
 						</div>
 						<!-- /.row -->
-						<div class="row">
-							<div class="col-sm-6">
-									<label for="company">Fecha de registro</label>
-									<h4>{{ mi_usuario.0.fecha_nac}}</h4>
-									
-							</div>
-							<div class="col-sm-6">
-									<label for="street">Dirección</label>
-									<h4>{{ mi_usuario.0.domicilio }}</h4>
-							</div>
-						</div>
+						
 
 						<div class="row">
 							<div class="col-sm-6">
@@ -78,43 +68,41 @@ Perfil Proveedor: {{  mi_usuario.0.nombres }}
 							</div>
 							<div class="col-sm-6">
 									<label for="email_account">Correo electronico</label>
-									<h4>{{ mi_usuario.0.email }}</h4>									
+									<h4>{{ mi_usuario.0.idUsuario.email }}</h4>									
 							</div>
 						</div>		
 
-						
-						<!-- /.row -->
-
-						<h3>Datos Encargado</h3>
-						
 						<div class="row">
 							<div class="col-sm-6">
-								<label for="firstname">Nombres</label>
-								<h4>{{  mi_usuario.0.nombres }}</h4>
+									<label for="company">Domicilio</label>
+									<h4>{{mi_usuario.0.domicilio}}</h4>		
 							</div>
 							<div class="col-sm-6">
-									<label for="lastname">Apellidos</label>
-									<h4>{{  mi_usuario.0.apellidos }}</h4>
+									<label for="fecha-cuenta">Tipo de Productos</label>
+									<h4>{{  mi_usuario.0.categoria }}</h4>
 							</div>
 						</div>
-						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+									<label for="company">Información Adicional</label>
+									<h4>{{mi_usuario.0.info}}</h4>		
+							</div>
+						</div>
 						<!-- /.row -->
 
-						<h3>Datos de Pago</h3>
-						
+						<hr>				
+						<h3>Información de Pagos</h3>
 						<div class="row">
 							<div class="col-sm-6">
 								<label for="bank">Codigo Interbancario</label>
-								<h4>12345-6789-012-345 </h4>
+								<h4>12345-6789-012-345 (dalta definir)</h4>
 							</div>
 							<div class="col-sm-6">
-									<label for="fecha-cuenta">Información</label>
-									<h4>Información</h4>
+								<label for="firstname">Cuenta a nombre de :</label>
+								<h4>{{  mi_usuario.0.encargado }}</h4>
 							</div>
-						</div>
-						<hr>
-						
-								
+							
+						</div>						
 					</div>
 				</div>
 				<!-- /.col-md-9 -->
@@ -136,8 +124,8 @@ _________________________________________________________ -->
 
 							<ul class="nav nav-pills nav-stacked">
 								<li class="active"><a href="/proveedor/perfil"><i class="fa fa-briefcase"></i> Mi perfil</a></li>
+								<li><a href="/proveedor/regProducto"><i class="fa fa-edit"></i>Crear nuevo producto</a></li>
 								<li><a href="/tienda/404"><i class="fa fa-user"></i> Mis Intermediarios</a></li>
-								<li><a href="/tienda/404"><i class="fa fa-edit"></i>Crear nuevo producto</a></li>
 								<li><a href="/tienda/404"><i class="fa fa-list-alt"></i>Mis productos</a></li>
 								<li><a href="/tienda/404"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
