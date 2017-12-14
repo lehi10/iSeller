@@ -78,7 +78,12 @@ def login_view(request):
             if user.exists():    
                 iniciarSesion(request,user)                  ## INICIAR SESION
                 permisos = permisosUsuario(request)
+<<<<<<< Updated upstream
             return redirect('/'+permisos+'/perfil')        
+=======
+                print("permisos:",permisos)
+                return redirect('/'+permisos+'/perfil')        
+>>>>>>> Stashed changes
     form_login = LoginForm()
     return redirect('/registro?err=log')
     
