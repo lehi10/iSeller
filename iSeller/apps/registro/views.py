@@ -79,8 +79,11 @@ def login_view(request):
                 iniciarSesion(request,user)                  ## INICIAR SESION
                 permisos = permisosUsuario(request)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             return redirect('/'+permisos+'/perfil')        
 =======
+=======
+>>>>>>> Stashed changes
                 print("permisos:",permisos)
                 return redirect('/'+permisos+'/perfil')        
 >>>>>>> Stashed changes
