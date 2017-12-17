@@ -14,9 +14,8 @@ def tienda(request):
     return render(request,'tienda/index.html')
 
 def contenido_view(request):
-	print("gerererer")
 	categorias=Categoria.objects.all()
-	ofertas = Oferta.objects.select_related()
+	ofertas = Producto.objects.select_related() ## CAMBIAR DE PRODUCTOS A OFERTAS Y PROMOCIONES
 	contexto={'mis_categorias': categorias, 'ofert_list' : ofertas}
 	for x in categorias:
 		print("--->",x.nombre)

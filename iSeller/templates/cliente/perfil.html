@@ -1,26 +1,23 @@
 {% extends 'base/base.html' %}
-
 {% load staticfiles %}
+
 {% block title %}
-iSeller - Perfil
+Perfil Cliente : {{  mi_usuario.0.nombres }} 
 {% endblock %}
 
-
 {% block content %}
-
-
 <div id="heading-breadcrumbs">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
-					<h1>My account</h1>
+					<h1>Mi Cuenta</h1>
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb">
 
 						<li><a href="index.html">Home</a>
 						</li>
-						<li>My account</li>
+						<li>Mi cuenta</li>
 					</ul>
 				</div>
 			</div>
@@ -38,32 +35,32 @@ iSeller - Perfil
 
 				<div class="col-md-9 clearfix" id="customer-account">
 
-					<p class="lead">Mi perfil</p>					
+					<p class="lead">Cliente : {{  mi_usuario.0.nombres }}  {{  mi_usuario.0.apellidos }} </p>					
 					<!-- /.box -->
 					<div class="box clearfix">
 						<div class="heading">
-							<h3 class="text-uppercase">Perfil de {{ mi_cliente.id_user }}</h3>
+							<h3 class="text-uppercase">Perfil de Cliente </h3>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
 								<label for="firstname">Nombres</label>
-								<h4>{{  mi_cliente.0.nombres }}</h4>
+								<h4>{{  mi_usuario.0.nombres }}</h4>
 							</div>
 							<div class="col-sm-6">
 									<label for="lastname">Apellidos</label>
-									<h4>{{  mi_cliente.0.apellidos }}</h4>
+									<h4>{{  mi_usuario.0.apellidos }}</h4>
 							</div>
 						</div>
 						<!-- /.row -->
 						<div class="row">
 							<div class="col-sm-6">
 									<label for="company">Company</label>
-									<h4>{{ mi_cliente.0.fecha_nac}}</h4>
+									<h4>{{ mi_usuario.0.fecha_nac}}</h4>
 									
 							</div>
 							<div class="col-sm-6">
 									<label for="street">Street</label>
-									<h4>{{ mi_cliente.0.email }}</h4>
+									<h4>{{ mi_usuario.0.idUsuario.email }}</h4>
 							</div>
 						</div>
 						<!-- /.row -->
@@ -71,11 +68,11 @@ iSeller - Perfil
 							<div class="col-sm-6">
 									<label for="phone">Telephone</label>
 
-									<h4>{{ mi_cliente.0.telf }}</h4>
+									<h4>{{ mi_usuario.0.telf }}</h4>
 							</div>
 							<div class="col-sm-6">
 									<label for="email_account">Email</label>
-									<h4>{{ mi_cliente.0.domicilio }}</h4>									
+									<h4>{{ mi_usuario.0.domicilio }}</h4>									
 							</div>
 						</div>				
 					</div>
@@ -92,21 +89,25 @@ iSeller - Perfil
 _________________________________________________________ -->
 					<div class="panel panel-default sidebar-menu">
 						<div class="panel-heading">
-							<h3 class="panel-title">Customer section</h3>
+							<h3 class="panel-title">Opciones</h3>
 						</div>
 
 						<div class="panel-body">
 
 							<ul class="nav nav-pills nav-stacked">
 								<li class="active">
-									<a href="customer-orders.html"><i class="fa fa-list"></i> My orders</a>
+									<a href="/cliente/carrito"><i class="fa fa-cart"></i> Mi carrito de compras</a>
 								</li>
 								<li>
-									<a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
+									<a href=""><i class="fa fa-heart"></i> Mi lista de deseos</a>
 								</li>
 								<li>
-									<a href="customer-account.html"><i class="fa fa-user"></i> My account</a>
+									<a href=""><i class="fa fa-bullhorn"></i> Buscar una oferta </a>
 								</li>
+								<li>
+									<a href=""><i class="fa fa-list"></i> Mis intermediarios </a>
+								</li>
+								
 								<li>
 									<a href="/registro/logout"><i class="fa fa-sign-out"></i> Logout</a>
 								</li>
@@ -123,11 +124,6 @@ _________________________________________________________ -->
 		<!-- /.container -->
 	</div>
 	<!-- /#content -->
-
-
-
-
-
 
 {% endblock%}
 

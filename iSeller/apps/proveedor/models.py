@@ -1,18 +1,17 @@
 from django.db import models
+from apps.registro.models import UsuariosTabla
 
 
 class Proveedor(models.Model):
     idProveedor = models.AutoField(primary_key=True, null=False,blank=False)
+    idUsuario = models.OneToOneField(UsuariosTabla,null=False,blank=False, on_delete=models.CASCADE)
     ruc = models.CharField(db_index=True ,null=False,blank=False, max_length=20)
     razonSocial = models.CharField(db_index=True,null=False,blank=False, max_length=100)
     encargado = models.CharField(null=False,max_length=100)
     categoria = models.CharField(null=True,blank=False,max_length=20)
     telf = models.CharField(null=True,blank=False,max_length=15)
     domicilio = models.TextField(null=False, max_length=100)
-    email = models.CharField(null=True,max_length=50)
     info = models.CharField(null=False,max_length=300)
-    usuario = models.CharField(blank=False,max_length=50)
-    password = models.CharField(max_length=100)    
     calificacion = models.IntegerField(default=0)
 
 class Producto(models.Model):
@@ -24,10 +23,10 @@ class Producto(models.Model):
     stock = models.IntegerField(default=0)
     calificacion = models.IntegerField(default=0)
     tags = models.CharField(default="",max_length=50)
-    info =models.CharField(default="",max_length=500)
+    info =models.TextField(default="",max_length=500)
     precioBasico = models.IntegerField(default=0)
-    descripcion = models.CharField(default="",max_length=500)
-    urlImagen = models.URLField(default="",max_length=1000)
+    descripcion = models.TextField(default="",max_length=500)
+    urlImagen = models.ImageField(upload_to='productosImg')
 
 class Categoria(models.Model):
     idCategoria = models.AutoField(primary_key=True)
