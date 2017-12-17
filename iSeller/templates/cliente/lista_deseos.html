@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Perfil Cliente : {{  mi_usuario.0.nombres }} 
+{% endblock %}
+
+{% block content %}
+<div id="heading-breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<h1></h1>
+				</div>
+				<div class="col-md-5">
+					<ul class="breadcrumb">
+
+						<li><a href="index.html">Home</a>
+						</li>
+						<li>Mis pedidos</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="content" class="clearfix">
+
+		<div class="container">
+
+			<div class="row">
+
+				<!-- *** LEFT COLUMN ***
+		 _________________________________________________________ -->
+
+				<div class="col-md-9 clearfix" id="customer-account">				
+					<!-- /.box -->
+					<div class="box clearfix">
+						<div class="heading col-md-9">
+							<h3 class="text-uppercase">Lista de Deseos</h3>
+						</div>
+					</div>
+						
+						
+				</div>
+				<!-- /.col-md-9 -->
+
+				<!-- *** LEFT COLUMN END *** -->
+
+				<!-- *** RIGHT COLUMN ***
+		 _________________________________________________________ -->
+
+				<div class="col-md-3">
+					<!-- *** CUSTOMER MENU ***
+_________________________________________________________ -->
+					<div class="panel panel-default sidebar-menu"  style=" border-left-color: #008B8B;" >
+						<div class="panel-heading ">
+							<h3 class="panel-title">Opciones</h3>
+						</div>
+
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li>
+									<a href="/cliente/perfil"><i class="fa fa-user" ></i> Mi perfil</a>
+								</li>
+								<li>
+									<a href="/cliente/carrito"><i class="fa fa-shopping-cart"></i> Mi carrito de compras</a>
+								</li>
+								<li>
+									<a href="/cliente/pedidos"><i class="fa fa-tag"></i> Mis Pedidos</a>
+								</li>
+								<li class="active">
+									<a href="/cliente/deseos"><i class="fa fa-heart"></i> Mi lista de deseos</a>
+								</li>
+								<li>
+									<a href=""><i class="fa fa-bullhorn"></i> Buscar una oferta </a>
+								</li>
+								<li>
+									<a href=""><i class="fa fa-group"></i> Mis intermediarios </a>
+								</li>
+								
+								<li>
+									<a href="/registro/logout"><i class="fa fa-sign-out"></i> Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- *** CUSTOMER MENU END *** -->
+				</div>
+				<!-- *** RIGHT COLUMN END *** -->
+			</div>
+			<!-- /.row -->
+
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#content -->
+
+{% endblock%}
+
+
