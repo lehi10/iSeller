@@ -16,7 +16,7 @@ class Proveedor(models.Model):
 
 class Producto(models.Model):
     idProducto =models.AutoField(primary_key=True)
-    idProveedor = models.ForeignKey(Proveedor,null=False,blank=False)
+    idProveedor = models.ForeignKey(Proveedor,null=False,blank=False,on_delete=models.CASCADE)
     nombre = models.CharField(blank=True,max_length=100)
     medidas = models.CharField(blank=True,max_length=50)
     marca = models.CharField(default="",max_length=50)
