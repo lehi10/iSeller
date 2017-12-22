@@ -92,7 +92,3 @@ def editarInformacion_view(request, id_user):
 def listaDeseos(request):
 	return render(request,'cliente/lista_deseos.html')
 
-
-
-
-

@@ -1,6 +1,5 @@
 from django.db import models
 
-
 from apps.registro.models import Persona
 from apps.proveedor.models import Producto
 # Create your models here.

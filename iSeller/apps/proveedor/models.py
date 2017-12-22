@@ -24,7 +24,7 @@ class Producto(models.Model):
     calificacion = models.IntegerField(default=0)
     tags = models.CharField(default="",max_length=50)
     info =models.TextField(default="",max_length=500)
-    precioBasico = models.IntegerField(default=0)
+    precioBasico = models.FloatField(default=0)
     descripcion = models.TextField(default="",max_length=500)
     urlImagen = models.ImageField(upload_to='productosImg')
 
