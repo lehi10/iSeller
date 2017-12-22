@@ -13,7 +13,7 @@ class Cliente(models.Model):
 #tabla de lista de pedidos de cada cliente
 class Pedidos(models.Model):
 	idPedido = models.AutoField(primary_key=True)
-	idCliente = models.ForeignKey(Cliente)
+	idCliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
 	nombre = models.CharField(blank=True, max_length=100)
 	descripcion = models.TextField(null=False, max_length=500)
 	categoria = models.CharField(max_length=10)
@@ -21,5 +21,5 @@ class Pedidos(models.Model):
 
 #tabla de lista de deseos
 class Lista_deseos(models.Model):
-	idProducto = models.ForeignKey(Producto,null=False,blank=False)
-	idCliente = models.ForeignKey(Persona,null=False,blank=False)
+	idProducto = models.ForeignKey(Producto,null=False,blank=False,on_delete=models.CASCADE)
+	idCliente = models.ForeignKey(Persona,null=False,blank=False,on_delete=models.CASCADE)
