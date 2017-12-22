@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from apps.cliente.views import index, perfilCliente, carritoCliente, pedidosCliente, editarInformacion_view,listaDeseos
+from apps.cliente.views import index,pagos, perfilCliente, carritoCliente, pedidosCliente, editarInformacion_view,listaDeseos
 
 
 urlpatterns =[ 
@@ -9,4 +9,5 @@ urlpatterns =[
     url(r'^pedidos$',pedidosCliente, name='pedidos'),
     url(r'^editarInf/(?P<id_user>.*)$',editarInformacion_view, name='editarInf'),
     url(r'^deseos$',listaDeseos, name='deseos'),
+    url(r'^pagos$',pagos, name='pagos'),
 ]

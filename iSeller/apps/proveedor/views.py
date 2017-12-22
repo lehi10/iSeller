@@ -13,7 +13,6 @@ from django.http import HttpResponse
 def index(request):
 	return render(request, 'proveedor/index.html')
 
-
 def perfilProveedor(request):
 	## VALIDACION PARA SABER SI EL USUARIO HA SIDO LOGEADO Y SI TIENE PERMISOS PARA ACCEDER
 	if request.session.get('isLogin') != True or request.session.get('permisos') != 'proveedor':

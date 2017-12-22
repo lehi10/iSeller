@@ -92,6 +92,8 @@ def listaDeseos(request):
 	return render(request,'cliente/lista_deseos.html')
 
 
+def pagos(request):
+    	return render(request,'cliente/pagos.html')
 
 
 

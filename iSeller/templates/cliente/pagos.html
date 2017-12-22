@@ -11,6 +11,11 @@ iSeller - Perfil
 
 
 
+
+
+
+
+
 <div id="heading-breadcrumbs">
     <div class="container">
         <div class="row">
@@ -42,88 +47,17 @@ iSeller - Perfil
 
                 <div class="box">
 
-                    <form method="post" action="shop-checkout1.html">
+                  <div class="container">
+		    <h1>Culqi Python Flask Example</h1>
+		    <a id="miBoton" class="btn btn-primary" href="#" >Pay</a>
+		    <br/><br/><br/>
+		    <div class="panel panel-default" id="response-panel">
+			<div class="panel-heading">Response</div>
+			<div class="panel-body" id="response">
+			</div>
+		    </div>
+		</div>
 
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Product</th>
-                                        <th>Quantity</th>
-                                        <th>Unit price</th>
-                                        <th>Discount</th>
-                                        <th colspan="2">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#">
-                                                <img src="{% static 'img/detailsquare.jpg' %}" alt="White Blouse Armani">
-                                            </a>
-                                        </td>
-                                        <td><a href="#">White Blouse Armani</a>
-                                        </td>
-                                        <td>
-                                            <input type="number" value="2" class="form-control">
-                                        </td>
-                                        <td>$123.00</td>
-                                        <td>$0.00</td>
-                                        <td>$246.00</td>
-                                        <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">
-                                                <img src="{% static 'img/basketsquare.jpg' %}" alt="Black Blouse Armani">
-                                            </a>
-                                        </td>
-                                        <td><a href="#">Black Blouse Armani</a>
-                                        </td>
-                                        <td>
-                                            <input type="number" value="1" class="form-control">
-                                        </td>
-                                        <td>$200.00</td>
-                                        <td>$0.00</td>
-                                        <td>$200.00</td>
-                                        <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="5">Total</th>
-                                        <th colspan="2">$446.00</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
-                        </div>
-                        <!-- /.table-responsive -->
-
-                        <div class="box-footer">
-                            <div class="pull-left">
-                                <a href="shop-category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
-                            </div>
-                            <div class="pull-right">
-                                <button class="btn btn-default"><i class="fa fa-refresh"></i> Update cart</button>
-                                
-                                
-                                </button>
-                                <a id="miBoton" class="btn btn-template-main" href="#" >Realizar el pago</a>
-                                <div class="panel panel-default" id="response-panel">
-                                <div class="panel-heading">Response</div>
-                                <div class="panel-body" id="response">
-                                </div>
-                                </div>
-                            </div>
-                            
-                                
-                            
-                        </div>
-
-                    </form>
 
                 </div>
                 <!-- /.box -->
@@ -251,9 +185,10 @@ iSeller - Perfil
 
 
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://checkout.culqi.com/plugins/v2"></script>
-
+<script type="text/javascript" src="{{url_for('static', filename='waitMe.min.js')}}"></script>
 
 <script>
 $("#response-panel").hide();
@@ -272,6 +207,9 @@ $('#miBoton').on('click', function (e) {
 // Recibimos Token del Culqi.js
 function culqi() {
   if (Culqi.token) {
+      $(document).ajaxStart(function(){
+        run_waitMe();
+      });
       // Imprimir Token
       $.ajax({
          type: 'POST',
@@ -303,10 +241,18 @@ function culqi() {
     resultdiv(Culqi.error.user_message);
   }
 };
+function run_waitMe(){
+  $('body').waitMe({
+    effect: 'orbit',
+    text: 'Procesando pago...',
+    bg: 'rgba(255,255,255,0.7)',
+    color:'#28d2c8'
+  });
+}
 function resultdiv(message){
   $('#response-panel').show();
   $('#response').html(message);
-
+  $('body').waitMe('hide');
 }
 </script>
 
