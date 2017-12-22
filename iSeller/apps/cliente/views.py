@@ -31,12 +31,13 @@ def perfilCliente(request):
 	return render(request,'cliente/perfil.html',contexto)   
 
 #muestra la interfaz de los pedidos del cliente
-def pedidosCliente(request):	
-	#obtenemos el id de la persona usando el id usuario
+def pedidosCliente(request):
+	#obtenemos el id de la persona usando el id cliente
 	#IDpersona = Persona.objects.get(idUsuario_id =request.session['id_user'])
 	idUsuario = request.session.get('id_user')
-	usuario = Persona.objects.get(idUsuario_id=idUsuario)
-	IDcliente = Cliente.objects.get(persona_id =usuario.idPersona)
+	usuario = request.session.get('usuario')
+	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
+	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
 	lista_pedidos = Pedidos.objects.filter(idCliente_id=IDcliente.idCliente)
 	#obtenemos la fecha actual 
 	if request.method == 'POST':

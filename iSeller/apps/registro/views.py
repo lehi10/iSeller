@@ -4,12 +4,14 @@ from django.http import HttpResponse
 # Create your views here.
 from apps.registro.forms import RegistroForm, RegistroUsuarioForm , RegistroProveedorForm, RegistroUsuarioProveedorForm
 from apps.registro.forms import LoginForm
-from django.core.urlresolvers import reverse_lazy
+
 
 from apps.cliente.views import index, perfilCliente
 
 from django.views.generic import ListView , CreateView
 from apps.registro.models import Persona, UsuariosTabla
+from apps.cliente.models import Cliente
+from apps.intermediario.models import Intermediario 
 
 """
     Función para iniciar sesión
@@ -27,7 +29,7 @@ def permisosUsuario(request):
 """
     Funcion para cerrar Sesión
 """
-def cerrarSesion(request ):
+def cerrarSesion(request ): 
     del request.session['id_user']
     del request.session['permisos']
     del request.session['usuario']
@@ -52,21 +54,37 @@ def registro_view(request):
     error = request.GET.get('err',False)
     if request.method == 'POST':
         form_usuario =RegistroUsuarioForm(request.POST or None)
-        form = RegistroForm(request.POST or None)
-        if form_usuario.is_valid() and form.is_valid():            
+        form_persona = RegistroForm(request.POST or None)
+        if form_usuario.is_valid() and form_persona.is_valid():            
+                        
             datosUsuario = form_usuario.save(commit=False)
             datosUsuario.save()
-            datosPersona = form.save(commit=False)
+
+            datosPersona = form_persona.save(commit=False)
             datosPersona.idUsuario_id  = datosUsuario.id
             datosPersona.save()
+
+            
+            if datosUsuario.permisos == 'cliente':
+                #Registro en la tabla Cliente , para Clientes
+                idPersona=Persona.objects.filter(idUsuario_id=datosUsuario.id)[0].idPersona
+                TablaCliente = Cliente(persona_id=idPersona)
+                TablaCliente.save()
+            
+            if datosUsuario.permisos == 'intermediario':
+                #Registro en la tabla Intermediario , para Intermediarios
+                idPersona=Persona.objects.filter(idUsuario_id=datosUsuario.id)[0].idPersona
+                TablaIntermediario = Intermediario(idPersona_id=idPersona,calificacion=0)
+                TablaIntermediario.save()
+
             name_us= form_usuario.cleaned_data.get("usuario")
             user = UsuariosTabla.objects.filter(usuario=name_us)           
             iniciarSesion(request,user)                     ## INICIAR SESSIÓN
             return redirect('/')
     else:
-        form = RegistroForm()
+        form_persona = RegistroForm()
         form_usuario =RegistroUsuarioForm()
-    return render(request,'registro/index.html', {'form':form , 'form_usuario' : form_usuario,'error' : error} )
+    return render(request,'registro/index.html', {'form':form_persona , 'form_usuario' : form_usuario,'error' : error} )
     
 """
     Vista de Registro Proveedor

@@ -64,7 +64,9 @@ Perfil Cliente : {{  mi_usuario.0.nombres }}
 								</div>
 							</div>
 						</div>
+						
 						<!-- fin clase modal -->
+						{% if lista_pedidos %}
 						<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -75,7 +77,6 @@ Perfil Cliente : {{  mi_usuario.0.nombres }}
 								</tr>
 							</thead>
 							<tbody>
-								{% if lista_pedidos %}
 									{% for pedido in lista_pedidos%}
 										<tr>
 											<td>{{pedido.nombre}}</td>
@@ -86,12 +87,19 @@ Perfil Cliente : {{  mi_usuario.0.nombres }}
 											</td>
 										</tr>
 									{% endfor %}
-								{% else %}
-								<h2>No tiene nningun pedido</h2>
-								{%endif%}
+								
 							</tbody>
 						</table>
+						{%endif%}
+						
 						</div>
+						{% if not lista_pedidos %}
+						<div class="text-center">
+							<h3>No se encontraron pedidos enviados</h3>		
+						</div>
+						{%endif%}
+						
+						
 				</div>
 				<!-- /.col-md-9 -->
 
