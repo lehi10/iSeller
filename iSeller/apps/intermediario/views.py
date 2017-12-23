@@ -5,10 +5,13 @@ from apps.tienda.views import error404
 
 from django.http import HttpResponse
 from apps.registro.models import Persona
+from apps.cliente.models import Pedidos
 # Create your views here.
 
 def index(request):
-    return render(request, 'intermediario/index.html')
+	pedidos=Pedidos.objects.all()
+	contexto={'mis_pedidos':pedidos}
+	return render(request, 'intermediario/index.html',contexto)
 
 
 def perfilIntermediario(request):

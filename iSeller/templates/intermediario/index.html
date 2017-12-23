@@ -112,13 +112,14 @@ _________________________________________________________ -->
 							<img src="{% static 'img/banner4.jpg' %}" alt="sales 2014" class="img-responsive">
 						</a>
 					</div>
-					<p class="text-muted lead">Ultimas promociones :</p>
+					<p class="text-muted lead">Ultimos Pedidos :</p>
 
 					<div class="row products">
 
-							{% if ofert_list %}
+							{% if mis_pedidos %}
 							
-							{% for  item in ofert_list %}
+							{% for  item in mis_pedidos %}
+							<!-- Cambiar este html, item recibe los pedidos (idPedido,nombre,descripcion,categoria,fecha_pedido,idCliente_id) -->
 
 							<div class="col-md-4 col-sm-6">
 									<div class="product">
@@ -130,8 +131,8 @@ _________________________________________________________ -->
 										<!-- /.image -->
 										<div class="text">
 											<h4><a href="/detalles?id={{ item.idProducto }}">{{ item.nombre }} </a></h4>
-											<h4> {{ item.marca }}</h4>
-											<p class="price"><del>indefinido</del> ${{item.precioBasico}}</p>
+											<h4> {{ item.fecha_pedido }}</h4>
+											<p class="price"><del></del> {{item.descripcion}}</p>
 											<p class="buttons">
 												<a href="shop-detail.html" class="btn btn-default">View detail</a>
 												<a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>

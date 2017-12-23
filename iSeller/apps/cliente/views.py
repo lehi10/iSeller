@@ -15,10 +15,15 @@ from django.contrib import auth
 
 
 from datetime import datetime
+from apps.proveedor.models import Producto
+from apps.proveedor.models import Categoria
 # Create your views here.
 
 def index(request):
-    return render(request, 'cliente/index.html')
+	categorias=Categoria.objects.all()
+	ofertas = Producto.objects.select_related() ## CAMBIAR DE PRODUCTOS A OFERTAS Y PROMOCIONES
+	contexto={'mis_categorias': categorias, 'ofert_list' : ofertas}
+	return render(request, 'cliente/index.html',contexto)
 
 
 def perfilCliente(request):
