@@ -9,6 +9,7 @@ from apps.cliente.models import Pedidos
 # Create your views here.
 
 def index(request):
+	print("entreeee")
 	pedidos=Pedidos.objects.all()
 	contexto={'mis_pedidos':pedidos}
 	return render(request, 'intermediario/index.html',contexto)
