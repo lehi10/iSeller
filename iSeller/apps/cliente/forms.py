@@ -15,16 +15,19 @@ class CrearPedidoForm(forms.ModelForm):
 				#'fecha_pedido',
 		]
 		labels = {
-				'nombe': '¿Qué esta buscando?',
+				'nombe': '¿ Qué esta buscando ?',
 				'categoria':'Eliga una categoría',
 				'descripcion': 'De una descripción',
 		}
 		categoriasList = (
-        		('Tecnología', 'Tecnología'),
-        		('Moda', 'Moda'),
-        		('Electro', 'Electro'),
-        		('Celulares', 'Celulares'),
-    	)
+			('computo', 'Computo'),
+			('moda', 'Moda'),
+			('celulares', 'Celulares'),
+			('hogar', 'Hogar'),
+			('deportes', 'Deportes'),
+			('jugueteria', 'Jugueteria'),
+		)
+		
 		widgets ={
 				'nombre':forms.TextInput(attrs={'class':'form-control'}),
 				'categoria':forms.Select(attrs={'class': 'form-control'}, choices=( (x ) for x in categoriasList ),),

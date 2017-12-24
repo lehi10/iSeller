@@ -6,12 +6,23 @@ from apps.tienda.views import error404
 from django.http import HttpResponse
 from apps.registro.models import Persona
 from apps.cliente.models import Pedidos
+from apps.proveedor.models import Categoria
 # Create your views here.
 
 def index(request):
-	print("entreeee")
-	pedidos=Pedidos.objects.all()
-	contexto={'mis_pedidos':pedidos}
+	if 'isLogin' not in request.session or request.session.get('permisos')!='intermediario':
+		return redirect('/')
+
+	categoria=''
+	if  'categoria' in request.GET and request.GET['categoria'] != "" :	
+		categoria= request.GET['categoria']
+		pedidos = Pedidos.objects.filter(categoria__icontains = categoria ) 
+	
+	else:
+		pedidos = Pedidos.objects.select_related() 
+		
+	categorias=Categoria.objects.all()
+	contexto={'mis_categorias': categorias,'mis_pedidos':pedidos}
 	return render(request, 'intermediario/index.html',contexto)
 
 

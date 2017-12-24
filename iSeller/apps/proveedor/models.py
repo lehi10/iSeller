@@ -26,6 +26,7 @@ class Producto(models.Model):
     info =models.TextField(default="",max_length=500)
     precioBasico = models.FloatField(default=0)
     descripcion = models.TextField(default="",max_length=500)
+    categoria = models.CharField(db_index=True,default="",max_length=100)
     urlImagen = models.ImageField(upload_to='productosImg')
 
 class Categoria(models.Model):

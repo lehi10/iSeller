@@ -126,9 +126,7 @@ def login_view(request):
             permisos = 'cliente'
             if user.exists():    
                 iniciarSesion(request,user)                  ## INICIAR SESION
-                permisos = permisosUsuario(request)
-                print("permisos:",permisos)
-                return redirect('/'+permisos+'/perfil')        
+                return redirect('/')        
     form_login = LoginForm()
     return redirect('/registro?err=log')
     

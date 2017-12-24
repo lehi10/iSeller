@@ -16,6 +16,8 @@ class Pedidos(models.Model):
 	nombre = models.CharField(blank=True, max_length=100)
 	descripcion = models.TextField(null=False, max_length=500)
 	categoria = models.CharField(max_length=10)
+	estado = models.BooleanField(default=True)
+	solicitudes = models.IntegerField(default=0)
 	fecha_pedido = models.DateField()
 
 #tabla de lista de deseos

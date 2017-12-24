@@ -10,7 +10,9 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-	return render(request, 'proveedor/index.html')
+    if 'isLogin' not in request.session or request.session.get('permisos')!='proveedor':
+    	return redirect('/')
+    return render(request, 'proveedor/index.html')
 
 
 def perfilProveedor(request):
