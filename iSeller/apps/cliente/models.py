@@ -23,4 +23,12 @@ class Pedidos(models.Model):
 #tabla de lista de deseos
 class Lista_deseos(models.Model):
 	idProducto = models.ForeignKey(Producto,null=False,blank=False,on_delete=models.CASCADE)
-	idCliente = models.ForeignKey(Persona,null=False,blank=False,on_delete=models.CASCADE)
+	idCliente = models.ForeignKey(Cliente,null=False,blank=False,on_delete=models.CASCADE)
+
+class CarritoDeCompras(models.Model):
+	idCarrito 	= models.AutoField(primary_key=True)
+	idProducto 	= models.ForeignKey(Producto,null=False,blank=False,on_delete=models.CASCADE)
+	idCliente 	= models.ForeignKey(Cliente,null=False,blank=False,on_delete=models.CASCADE)
+	cantidad  	=models.IntegerField(default=0)
+	descuento 	=models.FloatField(default=0)
+

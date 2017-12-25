@@ -90,27 +90,18 @@ _________________________________________________________ -->
 							
 							<div class="col-md-4 col-sm-6">
 									<div style="position:absolute ;">
-										<i class="fa fa-users"></i><strong> Intermediarios en este pedido : {{ item.solicitudes }}</strong>
-									</div>
-								<div class="product" style="width: 100%; height: 150px; overflow: hidden; ">	
+											<i class="fa fa-users"></i><strong> Intermediarios en este pedido : {{ item.solicitudes }}</strong>
+										</div>
+								<div class="product" style="width: 100%; height: 180px; overflow: hidden; ">	
 									
 									<div class="text">
 											
 											<h4><a href="/pedido?id={{ item.idPedido }}">{{ item.nombre }} </a></h4>
 											<h4> {{ item.fecha_pedido }}</h4>
-											
 											<p class="price"><del></del> <strong>{{ item.categoria }}</strong> {{item.descripcion}}</p>
-											<p class="buttons">
-												<a href="shop-detail.html" class="btn btn-default">View detail</a>
-												<a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</p>
-											
-										</div>
-										
-								</div>
-
-								
-
+											<a href="#Ver	" class="btn btn-default">Ver</a>
+										</div>	
+								</div>							
 								<!-- /.product -->
 							</div>
 						
