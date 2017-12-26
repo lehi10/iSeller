@@ -54,12 +54,11 @@ def crearPedido(request):
 	if request.method == 'POST':
 		print("metodo post")
 		form_pedido = PedidoForm(request.POST or None)
-
 		if form_pedido.is_valid():
 			print("validado")
 			#obtenemos lod datos llenados desde el formulario
 			datos_pedido = form_pedido.save(commit=False)
-			#E llenamos los campos que no se llenaron desde formulario
+			#llenamos los campos que no se llenaron desde formulario
 			datos_pedido.fecha_pedido = datetime.now()
 			#Guardamos el id del cliente actual en el pedido realizado
 			datos_pedido.idCliente_id=IDcliente.idCliente
@@ -74,9 +73,7 @@ def crearPedido(request):
 
 #editaremos un pedido
 def editarPedido(request,idp):
-	print("hola")
 	pedido = Pedidos.objects.get(idPedido = idp)
-	print(pedido.nombre)
 	if request.method =="POST":
 		form_pedido = PedidoForm(request.POST or None)
 		if form_pedido.is_valid():
@@ -87,21 +84,19 @@ def editarPedido(request,idp):
 			return redirect('/cliente/pedidos') 
 	if request.method == "GET":
 		form_pedido = PedidoForm(initial={
-			'nombre': pedido.nombre,
+			'nombre' : pedido.nombre,
 			'categoria': pedido.categoria,
 			'descripcion': pedido.descripcion,
 			})
-	contexto = {'form_pedido':form_pedido, 'pedido':pedido}
-	return render(request,'cliente/crearPedido.html',contexto)
+	contexto= {'form_pedido':form_pedido,'pedido':pedido}
+	return render(request, 'cliente/crearPedido.html', contexto)
 	
-#eliminamos pedidos
+#aliminamos pedidos
 def eliminarPedido(request, idp):
 	cliente = Pedidos.objects.get(idPedido=idp)
 	Pedidos.objects.filter(idPedido = idp).delete()
 	lista_pedidos = Pedidos.objects.filter(idCliente=cliente.idCliente_id)
 	return  redirect('/cliente/pedidos')
-
-	
 
 def carritoCliente(request):
     return render(request, 'cliente/carrito.html')

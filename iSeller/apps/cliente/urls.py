@@ -1,6 +1,5 @@
 from django.conf.urls import url, include
 from apps.cliente.views import pagos, perfilCliente, carritoCliente, editarInformacion_view,listaDeseos
-
 from apps.cliente.views import index,crearPedido,editarPedido,eliminarPedido,mostrarPedidos
 
 
