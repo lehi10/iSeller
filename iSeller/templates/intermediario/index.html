@@ -46,7 +46,7 @@ _________________________________________________________ -->
 								{%if mis_categorias%}
 								{%for categoria in mis_categorias %}
 								<li>
-									<a href="/categoria?cat={{categoria.nombre}}">{{categoria.nombre}}<span class="badge pull-right"></span></a>
+									<a href="?categoria={{categoria.nombre}}">{{categoria.nombre}}<span class="badge pull-right"></span></a>
 								</li>
 								{%endfor%}
 								{%endif%}
@@ -54,48 +54,9 @@ _________________________________________________________ -->
 						</div>
 					</div>
 
-					<div class="panel panel-default sidebar-menu">
+				
 
-						<div class="panel-heading">
-							<h3 class="panel-title">Marcas</h3>
-							<a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
-						</div>
-
-						<div class="panel-body">
-
-							<form>
-								<div class="form-group">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Armani (10)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Versace (12)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Carlo Bruni (15)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Jack Honey (14)
-										</label>
-									</div>
-								</div>
-								<button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-							</form>
-						</div>
-					</div>
-
-					<div class="banner">
-						<a href="shop-category.html">
-							<img src="{% static 'img/banner.jpg' %}" alt="sales 2014" class="img-responsive">
-						</a>
-					</div>
+					
 
 					<!-- /.banner -->
 
@@ -107,52 +68,44 @@ _________________________________________________________ -->
 				<!-- *** RIGHT COLUMN ***-->
 
 				<div class="col-sm-9">
-					<div class="banner">
-						<a href="shop-category.html">
-							<img src="{% static 'img/banner4.jpg' %}" alt="sales 2014" class="img-responsive">
-						</a>
-					</div>
-					<p class="text-muted lead">Ultimas promociones :</p>
+				
+					<p class="Heading">
+						<h3>Pedidos Recientes</h3>
+					</p>
+					<hr>
 
 					<div class="row products">
+						<div class="text-center ">
+							<a href="\">
+								<button class="btn btn-template-main">Mostrar Todos los Pedidos</button>
+							</a>
+						</div>
+						<hr>
 
-							{% if ofert_list %}
+							{% if mis_pedidos %}
 							
-							{% for  item in ofert_list %}
+							{% for  item in mis_pedidos %}
+							<!-- Cambiar este html, item recibe los pedidos (idPedido,nombre,descripcion,categoria,fecha_pedido,idCliente_id) -->
 
+							
 							<div class="col-md-4 col-sm-6">
-									<div class="product">
-										<div class="image">
-											<a href="/detalles?id={{ item.idProducto }}">
-												<img src="/media/{{ item.urlImagen }}" alt="" class="img-responsive image1">
-											</a>
+									<div style="position:absolute ;">
+											<i class="fa fa-users"></i><strong> Intermediarios en este pedido : {{ item.solicitudes }}</strong>
 										</div>
-										<!-- /.image -->
-										<div class="text">
-											<h4><a href="/detalles?id={{ item.idProducto }}">{{ item.nombre }} </a></h4>
-											<h4> {{ item.marca }}</h4>
-											<p class="price"><del>indefinido</del> ${{item.precioBasico}}</p>
-											<p class="buttons">
-												<a href="shop-detail.html" class="btn btn-default">View detail</a>
-												<a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</p>
-										</div>
-										<!-- /.text -->
-		
-										<div class="ribbon sale">
-											<div class="theribbon">SALE</div>
-											<div class="ribbon-background"></div>
-										</div>
-										<!-- /.ribbon -->
-		
-										<div class="ribbon new">
-											<div class="theribbon">NEW</div>
-											<div class="ribbon-background"></div>
-										</div>
-										<!-- /.ribbon -->
-									</div>
-									<!-- /.product -->
-								</div>
+								<div class="product" style="width: 100%; height: 180px; overflow: hidden; ">	
+									
+									<div class="text">
+											
+											<h4><a href="/pedido?id={{ item.idPedido }}">{{ item.nombre }} </a></h4>
+											<h4> {{ item.fecha_pedido }}</h4>
+											<p class="price"><del></del> <strong>{{ item.categoria }}</strong> {{item.descripcion}}</p>
+											<a href="#Ver	" class="btn btn-default">Ver</a>
+										</div>	
+								</div>							
+								<!-- /.product -->
+							</div>
+						
+							
 							{% endfor %} 
 							{% else %}
 							Error, no se encontraron productos
@@ -162,15 +115,7 @@ _________________________________________________________ -->
 					</div>
 					<!-- /.products -->
 
-					<div class="row">
-
-						<div class="col-md-12 banner">
-							<a href="#">
-								<img src="{% static 'img/banner3.jpg' %}" alt="" class="img-responsive">
-							</a>
-						</div>
-
-					</div>
+	
 
 
 					<div class="pages">

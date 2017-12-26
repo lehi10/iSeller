@@ -12,15 +12,12 @@ iSeller - Una Nueva Forma de comprar
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
-					<h1>iSeller</h1>
+					<h2>Una nueva manera de comprar</h>
 				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb">
-						<li><a href="/">Home</a>
-						</li>
-						<li>Category with left sidebar</li>
+						<li>Inicio/</a>						
 					</ul>
-
 				</div>
 			</div>
 		</div>
@@ -50,46 +47,10 @@ _________________________________________________________ -->
 								{%if mis_categorias%}
 								{%for categoria in mis_categorias %}
 								<li>
-									<a href="/categoria?cat={{categoria.nombre}}">{{categoria.nombre}}<span class="badge pull-right"></span></a>
-									<!--
-									<ul>
-										<li><a href="shop-category.html">T-shirts</a>
-										</li>
-										<li><a href="shop-category.html">Shirts</a>
-										</li>
-										<li><a href="shop-category.html">Pants</a>
-										</li>
-										<li><a href="shop-category.html">Accessories</a>
-										</li>
-									</ul>
-									-->
+										<a href="/?categoria={{categoria.nombre}}">{{categoria.nombre}}<span class="badge pull-right"></span></a>
 								</li>
 								{%endfor%}
 								{%endif%}
-								<!--
-								<li class="active">
-									<a href="shop-category.html">Ladies  <span class="badge pull-right">123</span></a>
-									<ul>
-										<li><a href="shop-category.html">T-shirts</a>
-										</li>
-										<li><a href="shop-category.html">Skirts</a>
-										</li>
-										<li><a href="shop-category.html">Pants</a>
-										</li>
-										<li><a href="shop-category.html">Accessories</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="shop-category.html">Kids  <span class="badge pull-right">11</span></a>
-									<ul>
-										<li><a href="shop-category.html">T-shirts</a></li>
-										<li><a href="shop-category.html">Skirts</a></li>
-										<li><a href="shop-category.html">Pants</a></li>
-										<li><a href="shop-category.html">Accessories</a></li>
-									</ul>
-								</li>
-								-->
 							</ul>
 						</div>
 					</div>
@@ -97,7 +58,7 @@ _________________________________________________________ -->
 					<div class="panel panel-default sidebar-menu">
 
 						<div class="panel-heading">
-							<h3 class="panel-title">Brands</h3>
+							<h3 class="panel-title">Marcas</h3>
 							<a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
 						</div>
 
@@ -126,66 +87,17 @@ _________________________________________________________ -->
 										</label>
 									</div>
 								</div>
-
 								<button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-
 							</form>
-
 						</div>
 					</div>
-
-					<div class="panel panel-default sidebar-menu">
-
-						<div class="panel-heading">
-							<h3 class="panel-title clearfix">Colours</h3>
-							<a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
-						</div>
-
-						<div class="panel-body">
-
-							<form>
-								<div class="form-group">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"> <span class="colour white"></span> White (14)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"> <span class="colour blue"></span> Blue (10)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"> <span class="colour green"></span> Green (20)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"> <span class="colour yellow"></span> Yellow (13)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"> <span class="colour red"></span> Red (10)
-										</label>
-									</div>
-								</div>
-
-								<button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-
-							</form>
-
-						</div>
-					</div>
-
-					<!-- *** MENUS AND FILTERS END *** -->
 
 					<div class="banner">
 						<a href="shop-category.html">
 							<img src="{% static 'img/banner.jpg' %}" alt="sales 2014" class="img-responsive">
 						</a>
 					</div>
+
 					<!-- /.banner -->
 
 				</div>
@@ -193,12 +105,66 @@ _________________________________________________________ -->
 
 				<!-- *** LEFT COLUMN END *** -->
 
-				<!-- *** RIGHT COLUMN ***
-		_________________________________________________________ -->
+				<!-- *** RIGHT COLUMN ***-->
 
 				<div class="col-sm-9">
+					<div class="row">
+						<div class="input-group">									
+							<span class="input-group-btn">
+								<form action="\" method="GET">
+										{% csrf_token %}
+									<div class="col-md-10" >
+										<input class="form-control" name="query" placeholder="Buscar un producto" type="text">
+										<button  type="submit" class="btn btn-template-main"><i class="fa fa-search"></i>Buscar</button>										
+									</div>
+								</form>
+								
+							</span>				
+						</div>
+						
+						<br>
+						
+						<div class="text-center">
 
-					<p class="text-muted lead">In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.</p>
+							<a class="btn btn-template-primary btn-lg" href="#formPedido" class="btn btn-template-main" data-toggle="modal">
+								<i class="fa fa-bullhorn"></i>
+								Crear un Pedido
+							</a>
+						</div>
+								<!--clase modal para crear pedidos-->
+						<div class="modal fade" id="formPedido">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h2 class="modal-title"> Crear Pedido</h2>
+										<p><strong>¿ Quieres una atención más personalizada ?</strong> Envianos tu pedido, y te responderemos lo más pronto posible. Disfruta de una una forma de comprar más personalizada</p>
+									</div>
+									
+									<div class="modal-body">		
+										<div class="text-center">
+											<div class="alert alert-warning alert-dismissible" role="alert">
+												<button type="button" class="close" data-dismiss="alert">
+													<span aria-hidden="true">×</span>
+													<span class="sr-only">Close</span>
+												</button>
+												Para enviar un pedido necesita crear una cuenta e iniciar sesión.
+											</div>
+											<a href="/registro">
+													<button type="submit" class="btn btn-template-main"><i class="fa fa-send"></i> Registrarse o Iniciar Sesión </button>
+											</a>
+										</div>		
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="banner">
+						<a href="shop-category.html">
+							<img src="{% static 'img/banner4.jpg' %}" alt="sales 2014" class="img-responsive">
+						</a>
+					</div>
+					<p class="text-muted lead">Ultimas promociones :</p>
 
 					<div class="row products">
 
@@ -207,17 +173,20 @@ _________________________________________________________ -->
 							{% for  item in ofert_list %}
 
 							<div class="col-md-4 col-sm-6">
-									<div class="product">
+									<div class="product" style="    
+									width: 100%; 
+									height: 320px; 
+									overflow: hidden; ">
 										<div class="image">
-											<a href="/detalles?id={{ item.idProducto.idProducto }}">
-												<img src="{% static 'img/product2.jpg' %}" alt="" class="img-responsive image1">
+											<a href="/detalles?id={{ item.idProducto }}">
+												<img src="/media/{{ item.urlImagen }}" alt="" class="img-responsive image1">
 											</a>
 										</div>
 										<!-- /.image -->
 										<div class="text">
-											<h3><a href="shop-detail.html">{{ item.nombre_oferta }} </a></h3>
-											<h4> {{ item.idProducto.marca }}</h4>
-											<p class="price"><del>$280</del> $143.00</p>
+											<h4><a href="/detalles?id={{ item.idProducto }}">{{ item.nombre }} </a></h4>
+											<h4> {{ item.marca }}</h4>
+											<p class="price"><del>indefinido</del> ${{item.precioBasico}}</p>
 											<p class="buttons">
 												<a href="shop-detail.html" class="btn btn-default">View detail</a>
 												<a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -241,7 +210,7 @@ _________________________________________________________ -->
 								</div>
 							{% endfor %} 
 							{% else %}
-							No hay nada
+							Error, no se encontraron productos
 							{% endif %}
 					
 						<!-- /.col-md-4 -->
@@ -252,7 +221,7 @@ _________________________________________________________ -->
 
 						<div class="col-md-12 banner">
 							<a href="#">
-								<img src="{% static 'img/banner2.jpg' %}" alt="" class="img-responsive">
+								<img src="{% static 'img/banner3.jpg' %}" alt="" class="img-responsive">
 							</a>
 						</div>
 
@@ -296,20 +265,6 @@ _________________________________________________________ -->
 	</div>
 	<!-- /#content -->
 
-
-	<!-- *** GET IT ***
-_________________________________________________________ -->
-
-	<div id="get-it">
-		<div class="container">
-			<div class="col-md-8 col-sm-12">
-				<h3>Do you want cool website like this one?</h3>
-			</div>
-			<div class="col-md-4 col-sm-12">
-				<a href="#" class="btn btn-template-transparent-primary">Buy this template now</a>
-			</div>
-		</div>
-	</div>
 
 {%endblock%}
 
