@@ -15,11 +15,54 @@ from django.contrib import auth
 
 
 from datetime import datetime
+from apps.proveedor.models import Producto
+from apps.proveedor.models import Categoria
 # Create your views here.
 
 def index(request):
-    return render(request, 'cliente/index.html')
+	if 'isLogin' not in request.session or request.session.get('permisos')!='cliente':
+		return redirect('/')
+	
+	keywords=''
+	categoria=''
+	if 'categoria' in request.GET and  request.GET['categoria'] != "" :	
+		categoria= request.GET['categoria']
+		ofertas = Producto.objects.filter(categoria__icontains = categoria ) ## CAMBIAR DE PRODUCTOS A OFERTAS Y PROMOCIONES
+	
+	else:
+		if 'query' in request.GET and  request.GET['query'] != "" :	
+			keywords= request.GET['query']
+			ofertas = Producto.objects.filter(nombre__icontains = keywords ) ## CAMBIAR DE PRODUCTOS A OFERTAS Y PROMOCIONES
+		else:
+			ofertas = Producto.objects.select_related() ## CAMBIAR DE PRODUCTOS A OFERTAS Y PROMOCIONES
+	
+	categorias=Categoria.objects.all()
 
+	#obtenemos el id de la persona usando el id cliente
+	#IDpersona = Persona.objects.get(idUsuario_id =request.session['id_user'])
+	idUsuario = request.session.get('id_user')
+	usuario = request.session.get('usuario')
+	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
+	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
+	
+	#obtenemos la fecha actual 
+	if request.method == 'POST':
+		form_pedido = CrearPedidoForm(request.POST or None)
+		if form_pedido.is_valid():
+			#obtenemos lod datos llenados desde el formulario
+			datos_pedido = form_pedido.save(commit=False)
+			#E llenamos los campos que no se llenaron desde formulario
+			datos_pedido.fecha_pedido = datetime.now()
+			#Guardamos el id del cliente actual en el pedido realizado
+			datos_pedido.idCliente_id=IDcliente.idCliente
+			datos_pedido.save()
+	else: 
+		form_pedido = CrearPedidoForm()
+	contexto= {'mis_categorias': categorias, 'ofert_list' : ofertas,'form_pedido':form_pedido,'keywords':keywords,'categoria': categoria}
+	return render(request, 'cliente/index.html', contexto)
+
+
+	
 
 def perfilCliente(request):
     ## VALIDACION PARA SABER SI EL USUARIO HA SIDO LOGEADO Y SI TIENE PERMISOS PARA ACCEDER
@@ -92,9 +135,12 @@ def editarInformacion_view(request, id_user):
 def listaDeseos(request):
 	return render(request,'cliente/lista_deseos.html')
 
+<<<<<<< HEAD
 
 def pagos(request):
     	return render(request,'cliente/pagos.html')
 
 
 
+=======
+>>>>>>> master
