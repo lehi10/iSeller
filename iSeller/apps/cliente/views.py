@@ -84,21 +84,62 @@ def pedidosCliente(request):
 	lista_pedidos = Pedidos.objects.filter(idCliente_id=IDcliente.idCliente)
 	#obtenemos la fecha actual 
 	if request.method == 'POST':
+<<<<<<< HEAD
 		form_pedido = CrearPedidoForm(request.POST or None)
+=======
+		print("metodo post")
+		form_pedido = PedidoForm(request.POST or None)
+>>>>>>> FrontEnd
 		if form_pedido.is_valid():
 			#obtenemos lod datos llenados desde el formulario
 			datos_pedido = form_pedido.save(commit=False)
-			#E llenamos los campos que no se llenaron desde formulario
+			#llenamos los campos que no se llenaron desde formulario
 			datos_pedido.fecha_pedido = datetime.now()
 			#Guardamos el id del cliente actual en el pedido realizado
 			datos_pedido.idCliente_id=IDcliente.idCliente
 			datos_pedido.save()
 	else: 
+<<<<<<< HEAD
 		form_pedido = CrearPedidoForm()
 	contexto= {'form_pedido':form_pedido,'lista_pedidos':lista_pedidos,'mi_usuario':usuario , 'id_user':idUsuario}
 	return render(request, 'cliente/pedidos.html', contexto)
 
 
+=======
+		print("no validado")
+		form_pedido = PedidoForm()
+		
+	contexto= {'form_pedido':form_pedido,'mi_usuario':usuario , 'id_user':idUsuario}
+	return render(request, 'cliente/crearPedido.html', contexto)
+
+#editaremos un pedido
+def editarPedido(request,idp):
+	pedido = Pedidos.objects.get(idPedido = idp)
+	if request.method =="POST":
+		form_pedido = PedidoForm(request.POST or None)
+		if form_pedido.is_valid():
+			pedido.nombre = form_pedido.cleaned_data['nombre']
+			pedido.categoria = form_pedido.cleaned_data['categoria']
+			pedido.descripcion = form_pedido.cleaned_data['descripcion']
+			pedido.save()
+			return redirect('/cliente/pedidos') 
+	if request.method == "GET":
+		form_pedido = PedidoForm(initial={
+			'nombre' : pedido.nombre,
+			'categoria': pedido.categoria,
+			'descripcion': pedido.descripcion,
+			})
+	contexto= {'form_pedido':form_pedido,'pedido':pedido}
+	return render(request, 'cliente/crearPedido.html', contexto)
+	
+#aliminamos pedidos
+def eliminarPedido(request, idp):
+	cliente = Pedidos.objects.get(idPedido=idp)
+	Pedidos.objects.filter(idPedido = idp).delete()
+	lista_pedidos = Pedidos.objects.filter(idCliente=cliente.idCliente_id)
+	return  redirect('/cliente/pedidos')
+
+>>>>>>> FrontEnd
 def carritoCliente(request):
     return render(request, 'cliente/carrito.html')
 
