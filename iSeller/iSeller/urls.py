@@ -23,6 +23,5 @@ urlpatterns = [
     url(r'^registro/', include('apps.registro.urls')),
     url(r'^proveedor/', include('apps.proveedor.urls')),
     url(r'^intermediario/', include('apps.intermediario.urls')),
-    url(r'^tienda/', include('apps.tienda.urls')),
     url(r'^',include('apps.dashboard.urls')),
 ]
