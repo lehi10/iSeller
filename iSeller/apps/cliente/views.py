@@ -135,12 +135,9 @@ def editarInformacion_view(request, id_user):
 def listaDeseos(request):
 	return render(request,'cliente/lista_deseos.html')
 
-<<<<<<< HEAD
 
 def pagos(request):
     	return render(request,'cliente/pagos.html')
 
 
 
-=======
->>>>>>> master
