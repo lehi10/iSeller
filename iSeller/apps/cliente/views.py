@@ -102,7 +102,7 @@ def crearPedido(request):
 			print("validado")
 			#obtenemos lod datos llenados desde el formulario
 			datos_pedido = form_pedido.save(commit=False)
-			#E llenamos los campos que no se llenaron desde formulario
+			#llenamos los campos que no se llenaron desde formulario
 			datos_pedido.fecha_pedido = datetime.now()
 			#Guardamos el id del cliente actual en el pedido realizado
 			datos_pedido.idCliente_id=IDcliente.idCliente
