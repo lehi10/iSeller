@@ -4,7 +4,7 @@ from apps.registro.models import Persona
 from apps.cliente.models import Pedidos
 
 
-class PedidoForm(forms.ModelForm):
+class CrearPedidoForm(forms.ModelForm):
 	class Meta:
 		model = Pedidos
 		fields = [
