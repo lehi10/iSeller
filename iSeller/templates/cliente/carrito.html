@@ -15,7 +15,7 @@ iSeller - Perfil
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1>Carrito de Compras </h1>
+                <h1>Shopping cart</h1>
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb">
@@ -33,17 +33,8 @@ iSeller - Perfil
     <div class="container">
 
         <div class="row">
-            {% block estadoCarrito %}
-                {%if estadoCarrito %}
-                    <div class="alert alert-success alert-dismissable fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Agregado!</strong> {{ detalles.0.nombre }} fue agregado a su Carrito de Compras.
-                    </div>
-                {%endif%}
-                
-            {% endblock %}
             <div class="col-md-12">
-                <p class="text-muted lead">Productos en tu carrito de compras : </p>
+                <p class="text-muted lead">You currently have 3 item(s) in your cart.</p>
             </div>
 
 
@@ -57,36 +48,48 @@ iSeller - Perfil
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio por unidad</th>
-                                        <th>Descuento</th>
+                                        <th colspan="2">Product</th>
+                                        <th>Quantity</th>
+                                        <th>Unit price</th>
+                                        <th>Discount</th>
                                         <th colspan="2">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <!-- ITEM  -->
-                                
-                                {% for item in listaCarrito%}
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <img src="/media/{{ item.idProducto.urlImagen }}" alt="White Blouse Armani">
+                                                <img src="{% static 'img/detailsquare.jpg' %}" alt="White Blouse Armani">
                                             </a>
                                         </td>
-                                        <td><a href="#">{{ item.idProducto.nombre }}</a>
+                                        <td><a href="#">White Blouse Armani</a>
                                         </td>
                                         <td>
-                                            <input type="number" value="{{ item.cantidad }}" class="form-control">
+                                            <input type="number" value="2" class="form-control">
                                         </td>
-                                        <td>S/. {{item.idProducto.precioBasico}}</td>
-                                        <td>{{ item.descuento }}</td>
-                                        <td>{{ item.idProducto.precioBasico }}</td>
+                                        <td>$123.00</td>
+                                        <td>$0.00</td>
+                                        <td>$246.00</td>
                                         <td><a href="#"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
-                                {% endfor %}
-                                <!-- /ITEM  -->
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                <img src="{% static 'img/basketsquare.jpg' %}" alt="Black Blouse Armani">
+                                            </a>
+                                        </td>
+                                        <td><a href="#">Black Blouse Armani</a>
+                                        </td>
+                                        <td>
+                                            <input type="number" value="1" class="form-control">
+                                        </td>
+                                        <td>$200.00</td>
+                                        <td>$0.00</td>
+                                        <td>$200.00</td>
+                                        <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -101,11 +104,23 @@ iSeller - Perfil
 
                         <div class="box-footer">
                             <div class="pull-left">
-                                <a href="\" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                <a href="shop-category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                             </div>
                             <div class="pull-right">
+                                <button class="btn btn-default"><i class="fa fa-refresh"></i> Update cart</button>
+                                
+                                
+                                </button>
                                 <a id="miBoton" class="btn btn-template-main" href="#" >Realizar el pago</a>
-                            </div>                          
+                                <div class="panel panel-default" id="response-panel">
+                                <div class="panel-heading">Response</div>
+                                <div class="panel-body" id="response">
+                                </div>
+                                </div>
+                            </div>
+                            
+                                
+                            
                         </div>
 
                     </form>
@@ -174,19 +189,23 @@ iSeller - Perfil
             <div class="col-md-3">
                 <div class="box" id="order-summary">
                     <div class="box-header">
-                        <h3>Descripción de Compra</h3>
+                        <h3>Order summary</h3>
                     </div>
-                    <p class="text-muted">Detalles del importe a realizar.</p>
+                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
 
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>Sub Total</td>
+                                    <td>Order subtotal</td>
                                     <th>$446.00</th>
                                 </tr>
                                 <tr>
-                                    <td>IGV (18%)</td>
+                                    <td>Shipping and handling</td>
+                                    <th>$10.00</th>
+                                </tr>
+                                <tr>
+                                    <td>Tax</td>
                                     <th>$0.00</th>
                                 </tr>
                                 <tr class="total">
@@ -231,6 +250,65 @@ iSeller - Perfil
 <!-- /#content -->
 
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://checkout.culqi.com/plugins/v2"></script>
+
+
+<script>
+$("#response-panel").hide();
+Culqi.publicKey = 'pk_test_vzMuTHoueOMlgUPj';
+Culqi.settings({
+    title: 'iSeller',
+    currency: 'PEN',
+    description: 'Producto de Prueba iSeller',
+    amount: 3500
+});
+$('#miBoton').on('click', function (e) {
+    // Abre el formulario con las opciones de Culqi.configurar
+    Culqi.open();
+    e.preventDefault();
+});
+// Recibimos Token del Culqi.js
+function culqi() {
+  if (Culqi.token) {
+      // Imprimir Token
+      $.ajax({
+         type: 'POST',
+         url: '/charges',
+         data: { token: Culqi.token.id, installments: Culqi.token.metadata.installments },
+         datatype: 'json',
+         success: function(data) {
+           var result = "";
+           if(data.constructor == String){
+               result = JSON.parse(data);
+           }
+           if(data.constructor == Object){
+               result = JSON.parse(JSON.stringify(data));
+           }
+           if(result.object === 'charge'){
+             resultdiv(result.outcome.user_message);
+           }
+           if(result.object === 'error'){
+               resultdiv(result.user_message);
+           }
+         },
+         error: function(error) {
+           resultdiv(error);
+         }
+      });
+  } else {
+    // Hubo un problema...
+    // Mostramos JSON de objeto error en consola
+    resultdiv(Culqi.error.user_message);
+  }
+};
+function resultdiv(message){
+  $('#response-panel').show();
+  $('#response').html(message);
+
+}
+</script>
 
 {% endblock%}
 
