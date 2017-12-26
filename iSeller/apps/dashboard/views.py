@@ -64,17 +64,12 @@ def detallesItem(request):
 			idUsuario = request.session.get('id_user')
 			idPersona =  Persona.objects.filter(idUsuario=idUsuario).all()[0].idPersona
 			cliente= Cliente.objects.filter(persona=idPersona).all()[0]
-			estado = Lista_deseos.objects.filter(idCliente=cliente.idCliente, idProducto=item[0])
-			print(estado)
-			if not estado:
-				itemLista = Lista_deseos(idCliente=cliente, idProducto=item[0])
-				itemLista.save()	
-				statusDeseo=True
+
+			itemLista = Lista_deseos(idCliente=cliente, idProducto=item[0])
+			itemLista.save()	
+			statusDeseo=True
 		else:
 			return redirect('/registro')
 	item_set={'detalles' : item,'id':idProducto,'estadoListaDeseos':statusDeseo}
 
 	return render(request,'tienda/item.html',item_set)
-
-
-

@@ -9,14 +9,15 @@ from django.views.generic import ListView
 from django.http import HttpResponse
 from apps.registro.models import Persona
 from apps.registro.forms import RegistroForm, RegistroUsuarioForm
-from apps.cliente.models import Cliente, Pedidos, Lista_deseos
+from apps.cliente.models import Cliente, Pedidos
 from apps.cliente.forms import CrearPedidoForm
 from django.contrib import auth
-
+from apps.cliente.models import CarritoDeCompras
 
 from datetime import datetime
 from apps.proveedor.models import Producto
 from apps.proveedor.models import Categoria
+
 # Create your views here.
 
 def index(request):
@@ -92,6 +93,7 @@ def crearPedido(request):
 	usuario = request.session.get('usuario')
 	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
 	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
+	print(IDcliente.idCliente)
 	#obtenemos la fecha actual 
 	if request.method == 'POST':
 		print("metodo post")
@@ -116,7 +118,6 @@ def crearPedido(request):
 
 #editaremos un pedido
 def editarPedido(request,idp):
-	print("hola")
 	pedido = Pedidos.objects.get(idPedido = idp)
 	print(pedido.nombre)
 	if request.method =="POST":
@@ -146,7 +147,37 @@ def eliminarPedido(request, idp):
 
 
 def carritoCliente(request):
-    return render(request, 'cliente/carrito.html')
+	idUsuario = request.session.get('id_user')
+	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
+	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
+	listaCarrito = CarritoDeCompras.objects.filter(idCliente = IDcliente.idCliente).select_related()
+
+	if 'id' not in request.GET or 'cant' not in request.GET:
+		item_set={	'listaCarrito':listaCarrito}
+		return render(request, 'cliente/carrito.html',item_set)
+
+	idProducto= request.GET['id']
+	cantProducto=request.GET['cant']
+	item =Producto.objects.filter(idProducto=idProducto).all()
+	
+	if len(item) != 1:
+		return render(request, 'cliente/carrito.html')
+	
+	statusCarrito=False	
+
+	if 'isLogin' in request.session and request.session.get('permisos') =='cliente':
+		idUsuario = request.session.get('id_user')
+		idPersona =  Persona.objects.filter(idUsuario=idUsuario).all()[0].idPersona
+		cliente= Cliente.objects.filter(persona=idPersona).all()[0]
+		estado = CarritoDeCompras.objects.filter(idCliente=cliente.idCliente, idProducto=item[0])
+		if not estado:
+			itemCarrito = CarritoDeCompras(cantidad=cantProducto,descuento=0,idCliente=cliente, idProducto=item[0])
+			itemCarrito.save()	
+			statusCarrito=True				
+	else:
+		return redirect('/registro')
+	item_set={'detalles' : item,'id':idProducto,'estadoCarrito':statusCarrito,'listaCarrito':listaCarrito}
+	return render(request, 'cliente/carrito.html',item_set)
 
 #Editamos informacion del usuario
 def editarInformacion_view(request, id_user):
@@ -179,18 +210,7 @@ def editarInformacion_view(request, id_user):
 		return render(request,'cliente/editarInf.html',contexto)
 
 def listaDeseos(request):
-	idUsuario = request.session.get('id_user')
-	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
-	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
-	favoritos = Lista_deseos.objects.filter(idCliente = IDcliente.idCliente).select_related()
-	contexto = {'favoritos':favoritos}
-	return render(request,'cliente/lista_deseos.html',contexto)
-
-def eliminarFavorito(request, idf):
-	Lista_deseos.objects.filter(id = idf).delete()
-	return  redirect('/cliente/deseos')
-	#return render(request,'cliente/lista_deseos.html',contexto)
-
+	return render(request,'cliente/lista_deseos.html')
 
 
 def pagos(request):
