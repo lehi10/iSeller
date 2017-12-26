@@ -9,7 +9,7 @@ from django.views.generic import ListView
 from django.http import HttpResponse
 from apps.registro.models import Persona
 from apps.registro.forms import RegistroForm, RegistroUsuarioForm
-from apps.cliente.models import Cliente, Pedidos
+from apps.cliente.models import Cliente, Pedidos, Lista_deseos
 from apps.cliente.forms import CrearPedidoForm
 from django.contrib import auth
 
@@ -92,7 +92,6 @@ def crearPedido(request):
 	usuario = request.session.get('usuario')
 	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
 	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
-	print(IDcliente.idCliente)
 	#obtenemos la fecha actual 
 	if request.method == 'POST':
 		print("metodo post")
@@ -180,7 +179,18 @@ def editarInformacion_view(request, id_user):
 		return render(request,'cliente/editarInf.html',contexto)
 
 def listaDeseos(request):
-	return render(request,'cliente/lista_deseos.html')
+	idUsuario = request.session.get('id_user')
+	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
+	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
+	favoritos = Lista_deseos.objects.filter(idCliente = IDcliente.idCliente).select_related()
+	contexto = {'favoritos':favoritos}
+	return render(request,'cliente/lista_deseos.html',contexto)
+
+def eliminarFavorito(request, idf):
+	Lista_deseos.objects.filter(id = idf).delete()
+	return  redirect('/cliente/deseos')
+	#return render(request,'cliente/lista_deseos.html',contexto)
+
 
 
 def pagos(request):
