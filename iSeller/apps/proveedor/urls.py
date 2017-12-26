@@ -1,9 +1,8 @@
 from django.conf.urls import url, include
-from apps.proveedor.views import index, perfilProveedor, registroProducto_view
+from apps.proveedor.views import index
+from apps.proveedor.views import perfilProveedor
 
 urlpatterns =[ 
     url(r'^$',index, name='index'),
     url(r'^perfil$',perfilProveedor,name='perfil'),
-    url(r'^regProducto$',registroProducto_view,name='Registrar Producto'),
-    
 ]
