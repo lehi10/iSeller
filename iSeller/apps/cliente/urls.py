@@ -1,11 +1,5 @@
 from django.conf.urls import url, include
-<<<<<<< HEAD
 from apps.cliente.views import index,pagos, perfilCliente, carritoCliente, pedidosCliente, editarInformacion_view,listaDeseos
-=======
-from apps.cliente.views import pagos, perfilCliente, carritoCliente, editarInformacion_view,listaDeseos
-from apps.cliente.views import index,crearPedido,editarPedido,eliminarPedido,mostrarPedidos
-
->>>>>>> FrontEnd
 
 
 urlpatterns =[ 
