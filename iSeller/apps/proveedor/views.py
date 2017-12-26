@@ -33,9 +33,7 @@ def registroProducto_view(request):
     if request.method == 'POST':
         
         form_producto = RegistroProductosForm(request.POST or None, request.FILES)
-        print("-------------")
         if form_producto.is_valid():
-            print("es valido")
             datosProducto = form_producto.save(commit=False)
             idProveedor = Proveedor.objects.filter(idUsuario = request.session['id_user']).values()[0]['idProveedor']
             datosProducto.idProveedor_id = idProveedor

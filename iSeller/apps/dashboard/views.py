@@ -8,6 +8,8 @@ from apps.proveedor.models import Categoria
 from apps.intermediario.views import index as index_intermediario
 from apps.proveedor.views import index as index_proveedor
 from apps.cliente.views import index as index_cliente
+from apps.cliente.models import Lista_deseos , Cliente
+from apps.registro.models import Persona
 
 def index2(request):
     return render(request,'index.html')
@@ -24,7 +26,7 @@ def contenido_view(request):
 		if(idUsuario=='proveedor'):
 			return index_proveedor(request)
 		if(idUsuario=='cliente'):
-			return index_cliente(request)	
+				return index_cliente(request)	
 	else:
 		keywords=''
 		categoria=''
@@ -44,7 +46,30 @@ def contenido_view(request):
 		return render(request,'index.html',contexto)
 
 def detallesItem(request):
-	id= request.GET['id']
-	item =Producto.objects.filter(idProducto=id).all()
-	item_set={'detalles' : item}
+	if 'id' not in request.GET:
+		return redirect('/')
+	
+	
+	idProducto= request.GET['id']
+	item =Producto.objects.filter(idProducto=idProducto).all()
+	
+	
+	if len(item) != 1:
+		return redirect('/')
+	
+	
+	statusDeseo=False	
+	if 'ald' in request.GET and request.GET['ald']=='1': 
+		if 'isLogin' in request.session and request.session.get('permisos') =='cliente':
+			idUsuario = request.session.get('id_user')
+			idPersona =  Persona.objects.filter(idUsuario=idUsuario).all()[0].idPersona
+			cliente= Cliente.objects.filter(persona=idPersona).all()[0]
+
+			itemLista = Lista_deseos(idCliente=cliente, idProducto=item[0])
+			itemLista.save()	
+			statusDeseo=True
+		else:
+			return redirect('/registro')
+	item_set={'detalles' : item,'id':idProducto,'estadoListaDeseos':statusDeseo}
+
 	return render(request,'tienda/item.html',item_set)

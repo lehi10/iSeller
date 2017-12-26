@@ -58,7 +58,7 @@ def index(request):
 			datos_pedido.save()
 	else: 
 		form_pedido = CrearPedidoForm()
-	contexto= {'mis_categorias': categorias, 'ofert_list' : ofertas,'form_pedido':form_pedido}
+	contexto= {'mis_categorias': categorias, 'ofert_list' : ofertas,'form_pedido':form_pedido,'keywords':keywords,'categoria': categoria}
 	return render(request, 'cliente/index.html', contexto)
 
 
