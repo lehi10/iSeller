@@ -11,14 +11,35 @@ from apps.cliente.views import index as index_cliente
 from apps.cliente.models import Lista_deseos , Cliente
 from apps.registro.models import Persona
 from apps.dashboard.models import Notificacion
+from apps.cliente.models import Pedidos
+from django.http import JsonResponse
+def insertar_notificacion(request):
+	print("im heeeere")
+	el_mensaje = request.GET.get('mensaje', None)
+	id_usuarioG=request.session['id_user']
+	print("--------------------->",el_mensaje)
+	
+	if(request.session['permisos']=="cliente"):
+		new_pe=Pedidos.objects.all().order_by("-idPedido")[0]
+		print("El Max:->",new_pe.idPedido)
+		nueva_notificacion = Notificacion(id_usuario=id_usuarioG,mensaje=el_mensaje,id_multiple=new_pe.idPedido,permisos="intermediario")
+	nueva_notificacion.save()
+	data={
+		'is_taken': Notificacion.objects.filter(id_usuario=id_usuarioG).exists()
+	}
+	return JsonResponse(data)
 def notificaciones(request):
 	print("======Notificaciones======")
 	print(request.session['id_user'])
 	id_usuarioG=request.session['id_user']
-	noti = Notificacion.objects.filter(id_usuario=id_usuarioG)
+	if(request.session['permisos']=="cliente"):
+		noti = Notificacion.objects.filter(user_destino=id_usuarioG)
+	if(request.session['permisos']=="intermediario"):
+		noti = Notificacion.objects.filter(permisos="intermediario")
 	for x in noti:
 		print("looooooooooook: ",x.mensaje)
 	return render(request,'base/notificaciones.html',{'notifi':noti})
+
 def index2(request):
     return render(request,'index.html')
 

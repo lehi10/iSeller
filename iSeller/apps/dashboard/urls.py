@@ -4,6 +4,7 @@ from apps.dashboard.views import *
 from apps.dashboard.views import contenido_view
 from apps.dashboard.views import detallesItem
 from apps.dashboard.views import notificaciones
+from apps.dashboard.views import insertar_notificacion
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -13,6 +14,7 @@ urlpatterns = [
     url(r'^categoria$', tienda),
     url(r'^detalles$', detallesItem),
     url(r'^notificaciones$', notificaciones),
+    url(r'^test_noti$', insertar_notificacion),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

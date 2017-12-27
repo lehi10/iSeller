@@ -88,6 +88,7 @@ def mostrarPedidos(request):
 	return render(request, 'cliente/pedidos.html', contexto)
 
 def crearPedido(request):
+	print("=====================Pedido procesando========================")
 	#obtenemos el id de la persona usando el id cliente
 	#IDpersona = Persona.objects.get(idUsuario_id =request.session['id_user'])
 	idUsuario = request.session.get('id_user')

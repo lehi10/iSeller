@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+	{% extends 'base/base.html' %}
 {% load staticfiles %}
 {% block title %}
 iSeller - Una Nueva Forma de comprar
@@ -6,13 +6,13 @@ iSeller - Una Nueva Forma de comprar
 
 {% block content%}
 
-
 	<div id="heading-breadcrumbs">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
 					<h2>Una nueva manera de comprar</h>
-				</div>
+					<!-- Prueba -->
+  				</div>
 				<div class="col-md-5">
 					<ul class="breadcrumb">
 						<li>Inicio/</a>						
@@ -139,13 +139,34 @@ _________________________________________________________ -->
 												<h2 class="modal-title"> Crear Pedido</h2>
 												<p><strong>¿ Quieres una atención más personalizada ?</strong> Envianos tu pedido, y te responderemos lo más pronto posible. Disfruta de una una forma de comprar más personalizada</p>
 											</div>
-											
+												{% block javascript %}
+											  <script>
+											      function pruebax()
+											      {
+											      		var aux="Ha solicitado "+ $("#id_nombre").val();
+											      		console.log(aux);
+											      		$.ajax({
+														        url: 'test_noti',
+														        data: {
+														          'mensaje': aux
+														        },
+														        dataType: 'json',
+														        success: function (data) {
+														          if (data.is_taken) {
+														            alert("A user with this username already exists.");
+														          }
+														        }
+														      });
+											    	}
+											  </script>
+											{% endblock %}
 											<div class="modal-body">
 												 <form  method="POST" action=" ">
 													{% csrf_token %}
 													{{ form_pedido.as_p}}          
-												<div class="text-center">
-													<button type="submit" class="btn btn-template-main"><i class="fa fa-send"></i> Enviar pedido </button>
+												<div class="text-center" onClick="pruebax();">
+													
+													<button type="submit" class="btn btn-template-main" ><i class="fa fa-send"></i> Enviar pedido </button>
 												</div>
 											</form>
 		
