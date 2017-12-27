@@ -27,9 +27,19 @@ iSeller - Una Nueva Forma de comprar
 		<div class="container">
 			{%if notifi%}
 			{%for x in notifi%}
-			<div>
+			<div class="row col-md-8 b-r" style="background: #F0F8FF;"> 
 			<!-- Modificar Esto <3 Karen-->
-					{{x.mensaje}}			
+				<div >
+				<a href="shop-category.html"><img src="{% static 'img/perfil.png' %}" 
+				class="col-md-2 padv-10" style="border-radius:200px;" > </a>
+				</div>
+				<div class="col-md-10" style="border-left: 1px solid grey;">
+				<strong>Karen Gordillo Viña</strong>a respondido a una petición:<br>
+				<strong>Mendaje: </strong>{{x.mensaje}}<br>
+				<h5 style="color: #778899	">Hace aproximadamente 5h</h5><br>
+				</div>
+
+				
 			</div>
 			{%endfor%}
 			{%endif%}
