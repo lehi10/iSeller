@@ -12,7 +12,8 @@ from apps.registro.forms import RegistroForm, RegistroUsuarioForm
 from apps.cliente.models import Cliente, Pedidos
 from apps.cliente.forms import CrearPedidoForm
 from django.contrib import auth
-from apps.cliente.models import CarritoDeCompras
+from apps.cliente.models import CarritoDeCompras, Lista_deseos
+
 
 from datetime import datetime
 from apps.proveedor.models import Producto
@@ -210,7 +211,17 @@ def editarInformacion_view(request, id_user):
 		return render(request,'cliente/editarInf.html',contexto)
 
 def listaDeseos(request):
-	return render(request,'cliente/lista_deseos.html')
+	idUsuario = request.session.get('id_user') 
+	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario) 
+	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona) 
+	favoritos = Lista_deseos.objects.filter(idCliente = IDcliente.idCliente).select_related() 
+	contexto = {'favoritos':favoritos} 
+	return render(request,'cliente/lista_deseos.html',contexto) 
+ 
+def eliminarFavorito(request, idf): 
+	Lista_deseos.objects.filter(id = idf).delete() 
+	return  redirect('/cliente/deseos') 
+	#return render(request,'cliente/lista_deseos.html',contexto) 
 
 
 def pagos(request):
