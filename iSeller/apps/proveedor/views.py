@@ -7,12 +7,12 @@ from apps.proveedor.forms import RegistroProductosForm
 
 from django.http import HttpResponse
 
-
 # Create your views here.
 
 def index(request):
-	return render(request, 'proveedor/index.html')
-
+    if 'isLogin' not in request.session or request.session.get('permisos')!='proveedor':
+    	return redirect('/')
+    return render(request, 'proveedor/index.html')
 
 def perfilProveedor(request):
 	## VALIDACION PARA SABER SI EL USUARIO HA SIDO LOGEADO Y SI TIENE PERMISOS PARA ACCEDER
@@ -32,9 +32,7 @@ def registroProducto_view(request):
     if request.method == 'POST':
         
         form_producto = RegistroProductosForm(request.POST or None, request.FILES)
-        print("-------------")
         if form_producto.is_valid():
-            print("es valido")
             datosProducto = form_producto.save(commit=False)
             idProveedor = Proveedor.objects.filter(idUsuario = request.session['id_user']).values()[0]['idProveedor']
             datosProducto.idProveedor_id = idProveedor

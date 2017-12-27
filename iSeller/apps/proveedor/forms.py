@@ -12,6 +12,7 @@ class RegistroProductosForm(forms.ModelForm):
             'marca',
             'stock',
             'tags',
+            'categoria',
             'info',
             'precioBasico',
             'descripcion',
@@ -23,11 +24,21 @@ class RegistroProductosForm(forms.ModelForm):
             'marca':        'Marca',
             'stock':        'Stock actual',
             'tags':         'Tags',
+            'categoria':    'Categoria',
             'info':         'Información',
             'precioBasico': 'Precio Base',
             'descripcion':  'Descripción adicional',
             'urlImagen': 'Seleccione una Imagen',
 		}
+
+            categoriasList = (
+        		('computo', 'Computo'),
+        		('moda', 'Moda'),
+        		('celulares', 'Celulares'),
+        		('hogar', 'Hogar'),
+                  ('deportes', 'Deportes'),
+                  ('jugueteria', 'Jugueteria'),
+                  )
 
             widgets = {
             'nombre':forms.TextInput(attrs={'class':'form-control'}),
@@ -35,6 +46,7 @@ class RegistroProductosForm(forms.ModelForm):
             'marca':forms.TextInput(attrs={'class':'form-control'}),
             'stock':forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
             'tags':forms.TextInput(attrs={'class':'form-control'}),
+            'categoria':forms.Select(attrs={'class': 'form-control'}, choices=( (x ) for x in categoriasList ),),
             'info':forms.Textarea(attrs={'class':'form-control','rows': 6, 'maxlength': 480}),
             'precioBasico':forms.TextInput(attrs={'class':'form-control' ,'type':'number', 'step':'0.01'}),
             'descripcion':forms.Textarea(attrs={'class':'form-control','rows': 6, 'maxlength': 480}),
