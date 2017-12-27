@@ -11,7 +11,7 @@ class Notificacion(models.Model):
 	id_usuario = models.CharField(max_length=5)
 	mensaje = models.CharField(max_length=80)
 	id_multiple = models.CharField(max_length=5)
-	permisos = models.CharField(max_length=20)
-	user_destino = models.CharField(max_length=20)
-	tiempo= models.DateField()
+	permisos_notificacion = models.CharField(max_length=20,blank=True,null=True)
+	user_destino = models.CharField(max_length=20,null=True,blank=True)
+	tiempo= models.DateField(blank=True,null=True)
 

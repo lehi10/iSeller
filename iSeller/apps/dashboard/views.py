@@ -22,7 +22,7 @@ def insertar_notificacion(request):
 	if(request.session['permisos']=="cliente"):
 		new_pe=Pedidos.objects.all().order_by("-idPedido")[0]
 		print("El Max:->",new_pe.idPedido)
-		nueva_notificacion = Notificacion(id_usuario=id_usuarioG,mensaje=el_mensaje,id_multiple=new_pe.idPedido,permisos="intermediario")
+		nueva_notificacion = Notificacion(id_usuario=id_usuarioG,mensaje=el_mensaje,id_multiple=new_pe.idPedido,permisos_notificacion="intermediario")
 	nueva_notificacion.save()
 	data={
 		'is_taken': Notificacion.objects.filter(id_usuario=id_usuarioG).exists()
@@ -35,7 +35,8 @@ def notificaciones(request):
 	if(request.session['permisos']=="cliente"):
 		noti = Notificacion.objects.filter(user_destino=id_usuarioG)
 	if(request.session['permisos']=="intermediario"):
-		noti = Notificacion.objects.filter(permisos="intermediario")
+		print("debi entrar aqui: ")
+		noti = Notificacion.objects.filter(permisos_notificacion="intermediario")
 	for x in noti:
 		print("looooooooooook: ",x.mensaje)
 	return render(request,'base/notificaciones.html',{'notifi':noti})
