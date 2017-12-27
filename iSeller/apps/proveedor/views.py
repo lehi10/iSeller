@@ -1,21 +1,18 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from apps.proveedor.models import Producto
+from apps.proveedor.models import Producto, Proveedor
 from apps.registro.models import Persona
 from apps.tienda.views import error404
 from apps.proveedor.forms import RegistroProductosForm
 
 from django.http import HttpResponse
 
-
 # Create your views here.
 
 def index(request):
-	print("hii")
-	return render(request, 'proveedor/index.html')
-
-
+    if 'isLogin' not in request.session or request.session.get('permisos')!='proveedor':
+    	return redirect('/')
+    return render(request, 'proveedor/index.html')
 
 def perfilProveedor(request):
 	## VALIDACION PARA SABER SI EL USUARIO HA SIDO LOGEADO Y SI TIENE PERMISOS PARA ACCEDER

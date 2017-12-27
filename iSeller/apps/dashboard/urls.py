@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^detalles$', detallesItem),
     url(r'^notificaciones$', notificaciones),
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
