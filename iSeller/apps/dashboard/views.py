@@ -10,9 +10,15 @@ from apps.proveedor.views import index as index_proveedor
 from apps.cliente.views import index as index_cliente
 from apps.cliente.models import Lista_deseos , Cliente
 from apps.registro.models import Persona
+from apps.dashboard.models import Notificacion
 def notificaciones(request):
-	print("jealou")
-	return render(request,'base/notificaciones.html')
+	print("======Notificaciones======")
+	print(request.session['id_user'])
+	id_usuarioG=request.session['id_user']
+	noti = Notificacion.objects.filter(id_usuario=id_usuarioG)
+	for x in noti:
+		print("looooooooooook: ",x.mensaje)
+	return render(request,'base/notificaciones.html',{'notifi':noti})
 def index2(request):
     return render(request,'index.html')
 
