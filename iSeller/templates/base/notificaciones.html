@@ -43,10 +43,11 @@ iSeller - Una Nueva Forma de comprar
 				class="col-md-2 padv-10" style="border-radius:200px;" > </a>
 				</div>
 				<div class="col-md-10" style="border-left: 1px solid grey;">
-				{%ifequal x.permisos "cliente"%}
+
+				{%ifequal x.permisos_notificacion "cliente"%}
 				<strong>El usuario {{x.id_usuario}}</strong> a respondido a una petición:<br>
 				{%endifequal%}
-				{%ifequal x.permisos "intermediario"%}
+				{%ifequal x.permisos_notificacion "intermediario"%}
 				<strong>El usuario {{x.id_usuario}}</strong> a hecho un pedido:<br>
 				{%endifequal%}
 				<strong>Mensaje: </strong>{{x.mensaje}}<br>

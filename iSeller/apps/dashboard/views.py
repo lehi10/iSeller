@@ -23,7 +23,7 @@ def insertar_notificacion(request):
 		new_pe=Pedidos.objects.all().order_by("-idPedido")[0]
 		print("El Max:->",new_pe.idPedido)
 		nueva_notificacion = Notificacion(id_usuario=id_usuarioG,mensaje=el_mensaje,id_multiple=new_pe.idPedido,permisos_notificacion="intermediario")
-	nueva_notificacion.save()
+		nueva_notificacion.save()
 	data={
 		'is_taken': Notificacion.objects.filter(id_usuario=id_usuarioG).exists()
 	}

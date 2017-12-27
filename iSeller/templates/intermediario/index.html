@@ -89,6 +89,27 @@ _________________________________________________________ -->
 											      		id_pedido=aux_pedido;
 											      		console.log(id_pedido);
 											    	}
+
+											    function Responder()
+											    {
+											    	console.log("Karen Naca");
+											    	var aux_entrada=$("#entrada_respuesta").val();
+											    	console.log(aux_entrada)
+											    	$.ajax({
+														        url: 'responder_p',
+														        data: {
+														          'mensaje': aux_entrada,
+														          'id_pedido':id_pedido
+														        },
+														        dataType: 'json',
+														        success: function (data) {
+														          if (data.is_taken) {
+														            alert("A user with this username already exists.");
+														          }
+														        }
+														        
+														      });
+											    }
 											  </script>	
 											{% endblock %}
 
