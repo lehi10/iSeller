@@ -62,10 +62,12 @@
 						</div>
 						<div class="col-xs-7">
 							<div class="social">
+								<!--
 								<a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
 								<a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
 								<a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
-								<a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+								-->
+								<a href="/notificaciones" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
 							</div>
 
 							{% if request.session.isLogin  %}
@@ -132,7 +134,7 @@ _________________________________________________________ -->
 				<div class="navbar navbar-default yamm" role="navigation" id="navbar">
 					<div class="container">
 						<div class="navbar-header">
-							<a class="navbar-brand home" href="/{{ request.session.permisos }}">
+							<a class="navbar-brand home" href="/">
 								<img src="{% static 'img/logo.png' %}" alt="Universal logo" class="hidden-xs hidden-sm">
 								<img src="{% static 'img/logo-small.png' %}" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
 							</a>
@@ -190,7 +192,7 @@ _________________________________________________________ -->
 															<li><a href="template-typography.html">Typography</a>
 															</li>
 														</ul>
-													</div>
+													</div> 
 													<div class="col-sm-3">
 														<h5>Header variations</h5>
 														<ul>

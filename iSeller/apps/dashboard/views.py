@@ -5,8 +5,15 @@ from django.views.generic import ListView
 from apps.dashboard.models import Oferta
 from apps.proveedor.models import Producto
 from apps.proveedor.models import Categoria
-
-def index(request):
+from apps.intermediario.views import index as index_intermediario
+from apps.proveedor.views import index as index_proveedor
+from apps.cliente.views import index as index_cliente
+from apps.cliente.models import Lista_deseos , Cliente
+from apps.registro.models import Persona
+def notificaciones(request):
+	print("jealou")
+	return render(request,'base/notificaciones.html')
+def index2(request):
     return render(request,'index.html')
 
 
