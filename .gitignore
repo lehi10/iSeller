@@ -1,2 +1,4 @@
-
-src/
+.idea 
+.sqlite3 
+.vEnv
+*pyc
