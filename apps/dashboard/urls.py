@@ -8,6 +8,7 @@ from apps.dashboard.views import insertar_notificacion
 from apps.intermediario.views import respuesta
 from django.conf.urls.static import static
 from django.conf import settings
+from apps.dashboard.views import charges
 
 urlpatterns = [
 	url(r'^$', contenido_view), 
@@ -17,6 +18,7 @@ urlpatterns = [
     url(r'^notificaciones$', notificaciones),
     url(r'^test_noti$', insertar_notificacion),url(r'^responder_p$',respuesta,name='respuesta_pend'),
     url(r'^responder_p$',respuesta,name='respuesta_pend'),
+    url(r'^charges', charges, name='charges'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

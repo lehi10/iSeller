@@ -154,6 +154,7 @@ def carritoCliente(request):
 	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
 	listaCarrito = CarritoDeCompras.objects.filter(idCliente = IDcliente.idCliente).select_related()
 	categorias=Categoria.objects.all()
+	
 
 	if 'id' not in request.GET or 'cant' not in request.GET or request.session.get('permisos') != 'cliente': 
 		item_set={	'listaCarrito':listaCarrito}
@@ -173,12 +174,14 @@ def carritoCliente(request):
 		idPersona =  Persona.objects.filter(idUsuario=idUsuario).all()[0].idPersona
 		cliente= Cliente.objects.filter(persona=idPersona).all()[0]
 		estado = CarritoDeCompras.objects.filter(idCliente=cliente.idCliente, idProducto=item[0])
+		
 		if not estado:
 			itemCarrito = CarritoDeCompras(cantidad=cantProducto,descuento=0,idCliente=cliente, idProducto=item[0])
 			itemCarrito.save()	
 			statusCarrito=True				
 	else:
 		return redirect('/registro')
+	
 	item_set={'mis_categorias':categorias,'detalles' : item,'id':idProducto,'estadoCarrito':statusCarrito,'listaCarrito':listaCarrito}
 	return render(request, 'cliente/carrito.html',item_set)
 
