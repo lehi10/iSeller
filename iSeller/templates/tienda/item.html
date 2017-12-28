@@ -30,7 +30,15 @@
 
 <div id="content">
     <div class="container">
-
+            {% block estadoListaDeseos %}
+                {%if estadoListaDeseos%}
+                    <div class="alert alert-success alert-dismissable fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Agregado!</strong> {{ detalles.0.nombre }} fue agregado con exito a su lista de deseos.
+                    </div>
+                {%endif%}
+            {% endblock %}
+            
         <div class="row">
 
             <!-- *** LEFT COLUMN ***
@@ -73,7 +81,7 @@
                     <div class="col-sm-6">
                         <div class="box">
 
-                            <form>
+                            
                                 <div class="text-center">
                                     <h3>{{detalles.0.nombre}}</h3>
                                     <h4>{{detalles.0.marca}}</h4>
@@ -85,11 +93,17 @@
                                     <p> {{ detalles.0.info }}</p>
                                 </blockquote>
                                 <p class="text-center">
-                                    <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Agregar al Carrito</button>
-                                    <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Enviar a la lista de Deseos"><i class="fa fa-heart-o"></i>
-                                    </button>
+                                    <a href="/cliente/carrito?id={{ id }}&cant=1">
+                                        <button class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Agregar al Carrito</button>
+                                    </a>
                                 </p>
-                            </form>
+                            
+                            <div class="text-center">
+                                <a href="?id={{ id }}&ald=1">
+                                    <button  class="btn btn-default"   title="Enviar a la lista de Deseos"><i class="fa fa-heart-o"></i>Agregar a mi lista de Deseos</button>
+                                </a>
+                            </div>
+                            
                         </div>
                     </div>
 

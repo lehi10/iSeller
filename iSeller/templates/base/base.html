@@ -27,6 +27,7 @@
 
 		<!-- Css animations  -->
 		<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+		<link href="{% static 'css/style.css' %}" rel="stylesheet">
 
 		<!-- Theme stylesheet, if possible do not edit this stylesheet -->
 		<link href="{% static 'css/style.default.css' %}" rel="stylesheet" id="theme-stylesheet">
@@ -67,10 +68,12 @@
 						</div>
 						<div class="col-xs-7">
 							<div class="social">
+								<!--
 								<a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
 								<a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
 								<a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
-								<a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+								-->
+								<a href="/notificaciones" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
 							</div>
 
 							{% if request.session.isLogin  %}
@@ -168,7 +171,7 @@ _________________________________________________________ -->
 															<li><a href="">Sub categoria 2</a></li>
 															<li><a href="">Sub categoria 3</a></li>
 														</ul>
-													</div>
+													</div> 
 													<div class="col-sm-3">
 														<h5>Categoria 2</h5>
 														<ul>
