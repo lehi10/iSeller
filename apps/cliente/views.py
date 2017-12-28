@@ -149,8 +149,6 @@ def eliminarPedido(request, idp):
 
 
 def carritoCliente(request):
-	if 'isLogin' not in request.session or request.session.get('isLogin')!=True :
-		return redirect('/registro')
 	idUsuario = request.session.get('id_user')
 	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
 	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)

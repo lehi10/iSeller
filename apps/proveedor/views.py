@@ -4,11 +4,19 @@ from apps.proveedor.models import Producto, Proveedor
 from apps.registro.models import Persona
 from apps.tienda.views import error404
 from apps.proveedor.forms import RegistroProductosForm
-
+from apps.proveedor.models import Producto
 from django.http import HttpResponse
 
 # Create your views here.
-
+def misproductos(request):
+	print("mira:",request.session.get('id_user'))
+	proveedor_id=Proveedor.objects.filter(idUsuario=request.session.get('id_user'))
+	print("look:",proveedor_id[0].idProveedor)
+	m_producto = Producto.objects.filter(idProveedor=proveedor_id[0].idProveedor)
+	for x in m_producto:
+		print("------>>>>",x.nombre)
+	contexto = {'ofert_list':m_producto}
+	return render(request, 'proveedor/misproductos.html',contexto)
 def index(request):
     if 'isLogin' not in request.session or request.session.get('permisos')!='proveedor':
     	return redirect('/')
