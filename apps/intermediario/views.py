@@ -18,7 +18,6 @@ def respuesta(request):
 	}
 	nueva_respuesta = Respuesta(respuesta=mensaje,idPedido_id=mi_pedido)
 	nueva_respuesta.save()
-	print("--------//////------->",mi_pedido)
 	return JsonResponse(data)
 	
 def index(request):
