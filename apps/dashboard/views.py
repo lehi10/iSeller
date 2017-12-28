@@ -82,7 +82,7 @@ def detallesItem(request):
 	
 	idProducto= request.GET['id']
 	item =Producto.objects.filter(idProducto=idProducto).all()
-	
+	categorias=Categoria.objects.all()
 	
 	if len(item) != 1:
 		return redirect('/')
@@ -100,6 +100,6 @@ def detallesItem(request):
 			statusDeseo=True
 		else:
 			return redirect('/registro')
-	item_set={'detalles' : item,'id':idProducto,'estadoListaDeseos':statusDeseo}
+	item_set={'mis_categorias':categorias,'detalles' : item,'id':idProducto,'estadoListaDeseos':statusDeseo}
 
 	return render(request,'tienda/item.html',item_set)
