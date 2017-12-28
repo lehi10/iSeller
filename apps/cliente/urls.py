@@ -14,6 +14,4 @@ urlpatterns =[
     url(r'^pagos$',pagos, name='pagos'),
     url(r'^deleteP/(?P<idp>.*)$',eliminarPedido, name='deleteP'),
     url(r'^deleteFav/(?P<idf>.*)$',eliminarFavorito, name='deleteFav'), 
-
-
 ]
