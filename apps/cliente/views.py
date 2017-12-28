@@ -139,7 +139,7 @@ def editarPedido(request,idp):
 	contexto = {'form_pedido':form_pedido, 'pedido':pedido}
 	return render(request,'cliente/crearPedido.html',contexto)
 	
-#eliminamos pedidos
+#eliminamos pedidosDescripción de laptop Lenovo
 def eliminarPedido(request, idp):
 	cliente = Pedidos.objects.get(idPedido=idp)
 	Pedidos.objects.filter(idPedido = idp).delete()
@@ -148,13 +148,13 @@ def eliminarPedido(request, idp):
 
 
 
-def carritoCliente(request):
+def carritoCliente(request):    
 	idUsuario = request.session.get('id_user')
 	clienteComoPersona = Persona.objects.get(idUsuario_id=idUsuario)
 	IDcliente = Cliente.objects.get(persona_id =clienteComoPersona.idPersona)
 	listaCarrito = CarritoDeCompras.objects.filter(idCliente = IDcliente.idCliente).select_related()
 
-	if 'id' not in request.GET or 'cant' not in request.GET:
+	if 'id' not in request.GET or 'cant' not in request.GET or request.session.get('permisos') != 'cliente': 
 		item_set={	'listaCarrito':listaCarrito}
 		return render(request, 'cliente/carrito.html',item_set)
 
