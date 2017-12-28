@@ -55,42 +55,6 @@ _________________________________________________________ -->
 						</div>
 					</div>
 
-					<div class="panel panel-default sidebar-menu">
-
-						<div class="panel-heading">
-							<h3 class="panel-title">Marcas</h3>
-							<a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
-						</div>
-
-						<div class="panel-body">
-
-							<form>
-								<div class="form-group">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Armani (10)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Versace (12)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Carlo Bruni (15)
-										</label>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Jack Honey (14)
-										</label>
-									</div>
-								</div>
-								<button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button>
-							</form>
-						</div>
-					</div>
 
 					<div class="banner">
 						<a href="shop-category.html">
@@ -186,7 +150,7 @@ _________________________________________________________ -->
 										<div class="text">
 											<h4><a href="/detalles?id={{ item.idProducto }}">{{ item.nombre }} </a></h4>
 											<h4> {{ item.marca }}</h4>
-											<p class="price"><del>indefinido</del> ${{item.precioBasico}}</p>
+											<p class="price">${{item.precioBasico}}</p>
 											<p class="buttons">
 												<a href="shop-detail.html" class="btn btn-default">View detail</a>
 												<a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>

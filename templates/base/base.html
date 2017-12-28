@@ -66,7 +66,6 @@
 					<div class="row">
 						<div class="col-xs-5 contact">
 							<p class="hidden-sm hidden-xs">iSeller.com</p>
-							<p class="hidden-md hidden-lg"><a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
 							</p>
 						</div>
 						<div class="col-xs-7">
@@ -76,7 +75,7 @@
 								<a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
 								<a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
 								-->
-								<a href="/notificaciones" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+								<!--<a href="/notificaciones" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>-->
 							</div>
 
 							{% if request.session.isLogin  %}
@@ -143,14 +142,8 @@ _________________________________________________________ -->
 						<div class="navbar-header">
 							<a class="navbar-brand home" href="/">
 								<img src="{% static 'img/logo.png' %}" alt="Universal logo" class="hidden-xs hidden-sm">
-								<img src="{% static 'img/logo-small.png' %}" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">iSeller - ir a Inicio</span>
+								<img src="{% static 'img/logo.png' %}" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">iSeller - ir a Inicio</span>
 							</a>
-							<div class="navbar-buttons">
-								<button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
-									<span class="sr-only">Toggle navigation</span>
-									<i class="fa fa-align-justify"></i>
-								</button>
-							</div>
 						</div>
 						<!--/.navbar-header -->
 						<div class="navbar-collapse collapse" id="navigation">
@@ -158,47 +151,7 @@ _________________________________________________________ -->
 								<li class="dropdown active">
 									<a href="/" >Inicio</a>
 								</li>
-								<li class="dropdown use-yamm yamm-fw">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li>
-											<div class="yamm-content">
-												<div class="row">
-													<div class="col-sm-6">
-														<img src="{% static 'img/template-easy-customize.png' %}" class="img-responsive hidden-xs" alt="">
-													</div>
-													<div class="col-sm-3">
-														<h5>Categoria 1</h5>
-														<ul>
-															<li><a href="">Sub categoria 1</a></li>
-															<li><a href="">Sub categoria 2</a></li>
-															<li><a href="">Sub categoria 3</a></li>
-														</ul>
-													</div> 
-													<div class="col-sm-3">
-														<h5>Categoria 2</h5>
-														<ul>
-																<li><a href="">Sub categoria 1</a></li>
-																<li><a href="">Sub categoria 2</a></li>
-																<li><a href="">Sub categoria 3</a></li>
-														</ul>
-													</div>
-
-													
-													<div class="col-sm-3">
-														<h5>Categoria 3</h5>
-														<ul>
-															<li><a href="">Sub categoria 1</a></li>
-															<li><a href="">Sub categoria 2</a></li>
-															<li><a href="">Sub categoria 3</a></li>
-														</ul>
-													</div>
-													
-												</div>												
-											</div>
-										</li>
-									</ul>
-								</li>
+								<!--
 								<li class="dropdown use-yamm yamm-fw">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categoria 2 <b class="caret"></b></a>
 									<ul class="dropdown-menu">
@@ -235,7 +188,7 @@ _________________________________________________________ -->
 										</li>
 									</ul>
 								</li>
-								<!-- ========== FULL WIDTH MEGAMENU ================== -->
+								
 								<li class="dropdown use-yamm yamm-fw">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categoria 3 <b class="caret"></b></a>
 									<ul class="dropdown-menu">
@@ -272,7 +225,7 @@ _________________________________________________________ -->
 										</li>
 									</ul>
 								</li>
-								<!-- ========== FULL WIDTH MEGAMENU END ================== -->
+								-->
 
 								<li class="dropdown">
 									<a href="/tienda/contacto" >Contactanos </a>
@@ -335,126 +288,26 @@ _________________________________________________________ -->
 {% block footer %}
 		<footer id="footer">
 				<div class="container">
-					<div class="col-md-3 col-sm-6">
+					<div class="col-md-8 col-sm-6">
 						<h4>iSeller</h4>
-						<hr>
-						<h4>Mantente informado de las promociones</h4>
-						<form>
-							<div class="input-group">
-								<input type="text" class="form-control">
-								<span class="input-group-btn">
-							<button class="btn btn-default" type="button"><i class="fa fa-send"></i></button>
-						</span>
-							</div>
-							<!-- /input-group -->
-						</form>
-
+						<h5>Ingeniería de Software II</h5>
+						<p >Template by <a href="https://bootstrapious.com">Bootstrapious</a> & <a href="https://fity.cz">Fity.cz</a>
+						
 						<hr class="hidden-md hidden-lg hidden-sm">
-
 					</div>
-					<!-- /.col-md-3 -->
-
-					<div class="col-md-3 col-sm-6">
-
-						<h4>Blog</h4>
-
-						<div class="blog-entries">
-							<div class="item same-height-row clearfix">
-								<div class="image same-height-always">
-									<a href="#">
-										<img class="img-responsive" src="{% static 'img/detailsquare.jpg' %}" alt="">
-									</a>
-								</div>
-								<div class="name same-height-always">
-									<h5><a href="#">Blog post name</a></h5>
-								</div>
-							</div>
-
-							<div class="item same-height-row clearfix">
-								<div class="image same-height-always">
-									<a href="#">
-										<img class="img-responsive" src="{% static 'img/detailsquare.jpg' %}" alt="">
-									</a>
-								</div>
-								<div class="name same-height-always">
-									<h5><a href="#">Blog post name</a></h5>
-								</div>
-							</div>
-
-						</div>
-
-						<hr class="hidden-md hidden-lg">
-
-					</div>
-					<!-- /.col-md-3 -->
-
-					<div class="col-md-3 col-sm-6">
-
+					<div class="col-md-4 col-sm-6">
 						<h4>Contactanos</h4>
-
 						<p><strong>Universidad Naciona de San Agustin</strong>
 							<br>AV. Paucarpata 123
 							<br>Cercado - Arequipa
 							<strong>Perú</strong>
 						</p>
-
-						<a href="/tienda/contacto" class="btn btn-small btn-template-main">Contactanos</a>
-
 						<hr class="hidden-md hidden-lg hidden-sm">
-
 					</div>
-					<!-- /.col-md-3 -->
-
-
-
-					<div class="col-md-3 col-sm-6">
-
-						<h4>Nuestros Clientes</h4>
-
-						<div class="photostream">
-							<div>
-								<a href="#">
-									<img src="{% static 'img/detailsquare.jpg' %}" class="img-responsive" alt="#">
-								</a>
-							</div>
-							<div>
-								<a href="#">
-									<img src="{% static 'img/detailsquare2.jpg' %}" class="img-responsive" alt="#">
-								</a>
-							</div>
-							<div>
-								<a href="#">
-									<img src="{% static 'img/detailsquare3.jpg' %}" class="img-responsive" alt="#">
-								</a>
-							</div>
-
-						</div>
-
-					</div>
-					<!-- /.col-md-3 -->
 				</div>
-				<!-- /.container -->
 			</footer>
-			<!-- /#footer -->
 
-			<!-- *** FOOTER END *** -->
-
-			<!-- *** COPYRIGHT ***
-		-->
-
-			<div id="copyright">
-				<div class="container" >
-					<div class="col-md-12">
-						<p class="pull-left">&copy; 2017. iSeller.com</p>
-						<p class="pull-right">Template by <a href="https://bootstrapious.com">Bootstrapious</a> & <a href="https://fity.cz">Fity.cz</a>
-								<!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
-						</p>
-
-					</div>
-				</div>
-			</div>
-			<!-- /#copyright -->
-
+			
 			<!-- *** COPYRIGHT END *** -->
 		</div>
 		<!-- /#all -->
