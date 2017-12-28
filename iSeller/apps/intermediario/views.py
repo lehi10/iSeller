@@ -9,6 +9,7 @@ from apps.cliente.models import Pedidos
 from apps.proveedor.models import Categoria
 from django.http import JsonResponse
 from apps.intermediario.models import Respuesta
+from apps.dashboard.models import Notificacion
 # Create your views here.
 def respuesta(request):
 	mensaje=request.GET.get('mensaje',None)
@@ -16,8 +17,12 @@ def respuesta(request):
 	data ={
 		'is_taken': Categoria.objects.all().exists()
 	}
+	todo_pedido=Pedidos.objects.filter(idPedido=mi_pedido)
 	nueva_respuesta = Respuesta(respuesta=mensaje,idPedido_id=mi_pedido)
 	nueva_respuesta.save()
+	mi_mensaje="El usuario "+ str(request.session.get('id_user')) + "a respondido tu pedido"
+	mi_notificacion= Notificacion(id_usuario=request.session.get('id_user'),mensaje=mi_mensaje,id_multiple=mi_pedido,user_destino=todo_pedido[0].idCliente_id)
+	mi_notificacion.save()
 	print("--------//////------->",mi_pedido)
 	return JsonResponse(data)
 	
