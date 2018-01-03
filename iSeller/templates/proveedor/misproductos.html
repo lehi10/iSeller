@@ -42,7 +42,13 @@ Perfil Proveedor: {{  mi_usuario.0.nombres }}
 				<div class="col-md-9">
 					<div class="box">
 							<h2 class="text-uppercase">Mis Productos</h2>
-							<br><br><br>
+							
+							
+								
+
+							
+						</div>
+						<div> 
 							{% if ofert_list %}
 							
 							{% for  item in ofert_list %}
@@ -87,9 +93,7 @@ Perfil Proveedor: {{  mi_usuario.0.nombres }}
 							{% else %}
 							Error, no se encontraron productos
 							{% endif %}
-								
 
-							
 						</div>
 				</div>
 				<div class="col-md-3">
@@ -107,6 +111,7 @@ _________________________________________________________ -->
 								<li ><a href="/proveedor/regProducto"><i class="fa fa-edit"></i>Crear nuevo producto</a></li>
 								<li><a href="/tienda/404"><i class="fa fa-user"></i> Mis Intermediarios</a></li>
 								<li class="active"><a href="/proveedor/misproductos"><i class="fa fa-list-alt"></i>Mis productos</a></li>
+								<li><a href="/proveedor/requerimientos"><i class="fa fa-list-alt"></i>Mis requerimientos</a></li>
 								<li><a href="/tienda/404"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
 						</div>

@@ -5,6 +5,7 @@ from apps.registro.models import Persona
 from apps.tienda.views import error404
 from apps.proveedor.forms import RegistroProductosForm
 from apps.proveedor.models import Producto
+from apps.proveedor.models import Requerimientos
 from django.http import HttpResponse
 
 # Create your views here.
@@ -31,7 +32,10 @@ def perfilProveedor(request):
 	usuario = Proveedor.objects.filter(idUsuario=idUsuario)
 	contexto= {'mi_usuario':usuario , 'id_user':idUsuario}
 	return render(request,'proveedor/perfil.html',contexto)     
-
+def MostrarRequerimientos(request):
+	all_requerimientos = Requerimientos.objects.all()
+	contexto = {'mis_requerimientos':all_requerimientos}
+	return render(request,'proveedor/requerimientos.html',contexto)
 """
     Vista registro Producto 
 """

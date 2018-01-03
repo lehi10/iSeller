@@ -32,4 +32,10 @@ class Producto(models.Model):
 class Categoria(models.Model):
     idCategoria = models.AutoField(primary_key=True)
     nombre=models.CharField(blank=True,max_length=100)
+class Requerimientos(models.Model):
+    idRequerimiento= models.AutoField(primary_key=True)
+    nombre=models.CharField(blank=True,max_length=100)
+    descripcion=models.CharField(blank=True,max_length=300)
+    cantidad=models.IntegerField(default=0)
+    marca=models.CharField(blank=True,max_length=100)
 
